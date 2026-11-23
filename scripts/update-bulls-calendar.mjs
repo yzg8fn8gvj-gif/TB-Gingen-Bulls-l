@@ -393,9 +393,11 @@ async function fetchTeamAnalysisPage() {
       }
       const resultHtml = await response.text();
       const resultText = clean(resultHtml);
-      const escapedTeamName = config.teamName.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
-      const teamMarker = new RegExp('Mannschaft\\s*:\\s*' + escapedTeamName, 'i');
-      const validResult = response.ok && teamMarker.test(resultText) && !/Bitte eine Auswertung auswählen/i.test(resultText);
+      const teamShortName = config.teamName.replace(/^TB\s+/i, '');
+      const hasTeamName = resultText.toLowerCase().includes(config.teamName.toLowerCase())
+        || resultText.toLowerCase().includes(teamShortName.toLowerCase());
+      const hasPlayerTable = /Platz\s+Name\s+Punkte/i.test(resultText);
+      const validResult = response.ok && hasTeamName && hasPlayerTable && !/Bitte eine Auswertung auswählen/i.test(resultText);
       const clueMarkers = ['Bitte eine Auswertung auswählen','Auswertung für','Mannschaft:','Punkte','Gesamt','starten'];
       console.log('DVOS-Ergebnis-Marker:', JSON.stringify(clueMarkers.map(marker => {
         const index = resultText.toLowerCase().indexOf(marker.toLowerCase());
