@@ -314,19 +314,20 @@ async function findTeamAnalysisUrl() {
     for (const formMatch of page.matchAll(/<form\b([^>]*)>([\s\S]*?)<\/form>/gi)) {
       const formAttrs = formMatch[1];
       const formHtml = formMatch[2];
-      const formMethod = (formAttrs.match(/method\\s*=\\s*["']([^"']*)["']/i)?.[1] || 'GET').toUpperCase();
-      const formActionRaw = formAttrs.match(/action\\s*=\\s*["']([^"']*)["']/i)?.[1] || fallback;
-      const selectDiagnostics = [...formHtml.matchAll(/<select\\b([^>]*)>([\\s\\S]*?)<\\/select>/gi)].map(select => ({
-        name: select[1].match(/name\\s*=\\s*["']([^"']+)["']/i)?.[1] || null,
-        options: [...select[2].matchAll(/<option\\b([^>]*)>([\\s\\S]*?)<\\/option>/gi)].map(option => ({
-          value: option[1].match(/value\\s*=\\s*["']([^"']*)["']/i)?.[1] || '',
+      const formMethod = (formAttrs.match(/method\s*=\s*["']([^"']*)["']/i)?.[1] || 'GET').toUpperCase();
+      const formActionRaw = formAttrs.match(/action\s*=\s*["']([^"']*)["']/i)?.[1] || fallback;
+      const selectDiagnostics = [...formHtml.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/gi)].map(select => ({
+        name: select[1].match(/name\s*=\s*["']([^"']+)["']/i)?.[1] || null,
+        optionCount: [...select[2].matchAll(/<option\b/gi)].length,
+        matchingOptions: [...select[2].matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)].map(option => ({
+          value: option[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] || '',
           label: clean(option[2])
         })).filter(option => /Gingen Bulls I/i.test(option.label)).slice(0, 3)
       }));
-      const inputDiagnostics = [...formHtml.matchAll(/<input\\b([^>]*)>/gi)].map(input => ({
-        name: input[1].match(/name\\s*=\\s*["']([^"']+)["']/i)?.[1] || null,
-        type: input[1].match(/type\\s*=\\s*["']([^"']+)["']/i)?.[1] || 'text',
-        value: input[1].match(/value\\s*=\\s*["']([^"']*)["']/i)?.[1] || ''
+      const inputDiagnostics = [...formHtml.matchAll(/<input\b([^>]*)>/gi)].map(input => ({
+        name: input[1].match(/name\s*=\s*["']([^"']+)["']/i)?.[1] || null,
+        type: input[1].match(/type\s*=\s*["']([^"']+)["']/i)?.[1] || 'text',
+        value: input[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] || ''
       }));
       console.log('DVOS-Auswertungsformular:', JSON.stringify({method:formMethod,action:formActionRaw,selects:selectDiagnostics,inputs:inputDiagnostics}));
       const actionMatch = formAttrs.match(/action\\s*=\\s*["']([^"']*)["']/i);
