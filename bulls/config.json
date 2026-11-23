@@ -1,0 +1,14 @@
+{
+  "sourceUrl": "https://dvos.de/liga.php?a_liga=45&p=0",
+  "baseUrl": "https://dvos.de/",
+  "leagueId": 45,
+  "leagueName": "Bezirksoberliga A",
+  "season": "2026/2027",
+  "teamName": "TB Gingen Bulls I",
+  "teamAliases": [
+    "TB Gingen Bulls I",
+    "Gingen Bulls I"
+  ],
+  "eventDurationMinutes": 120,
+  "note": "Für die nächste Saison nur leagueId, leagueName und season anpassen. Die Kalender-Abo-Adresse bleibt gleich."
+}
