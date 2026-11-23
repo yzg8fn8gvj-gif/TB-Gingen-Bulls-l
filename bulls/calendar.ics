@@ -1,0 +1,288 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TB Gingen Bulls//Mannschaft I Liga und Pokal Calendar//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:TB Gingen Bulls I · Liga & Pokal
+X-WR-TIMEZONE:Europe/Berlin
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+X-LIC-LOCATION:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dvos-f32966eeaebd7dc3d986cae5@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TSV Game Over II – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20260923
+DTEND;VALUE=DATE:20260924
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 1\nErgebnis: 4:6\nUhrz
+ eit: von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztä
+ gig\nQuelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=41&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-010492de2bb922f9ea0f34e6@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – TSG Nattheim Darts I
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 2\nErgebnis: 3:7\nUhrzeit: 
+ von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\n
+ Quelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=109&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-6a97a96266194ae1aafee815@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – DCU Oberensingen I
+DTSTART;VALUE=DATE:20261007
+DTEND;VALUE=DATE:20261008
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 3\nErgebnis: 9:1\nUhrzeit: 
+ von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\n
+ Quelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=190&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-a965c91177afdfda30c628a6@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:SV RV Ohmenheim I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 4\nErgebnis: 5:5\nUhrz
+ eit: von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztä
+ gig\nQuelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=271&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-13af8282b890022b9fa7d47d@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:DC Lonetal Bernstadt I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 5\nErgebnis: 1:9\nUhrz
+ eit: von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztä
+ gig\nQuelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=342&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-698470172686e790e41c4871@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – 1. DC Göppingen II
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 6\nErgebnis: 7:3\nUhrzeit: 
+ von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\n
+ Quelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=421&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-21040ad4a571e46fefb4ecd0@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – WSV Mehrstetten Fuenfnullois I
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 7\nErgebnis: 8:2\nUhrzeit: 
+ von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\n
+ Quelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=497&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-339db04d7f36776cbce11770@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TV Steinheim I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 8\nErgebnis: 5:5\nUhrz
+ eit: von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztä
+ gig\nQuelle: https://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/spielbericht.php?id=535&art=1&a_liga=45&spieltag=3
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-2fba09741165f4083556e5ec@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:Kellerfreunde DJK Göppingen I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20261202
+DTEND;VALUE=DATE:20261203
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 9\nUhrzeit: von der DV
+ OS-Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: ht
+ tps://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-91b1973f9d1521e960dff991@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – TSV Game Over II
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 10\nUhrzeit: von der DVOS-Q
+ uelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: https:
+ //dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-8552e7f50305e32f4f2bf564@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TSG Nattheim Darts I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20270126
+DTEND;VALUE=DATE:20270127
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 11\nUhrzeit: von der D
+ VOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: h
+ ttps://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-002a77f93f17f17c31f1a87e@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:DCU Oberensingen I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20270217
+DTEND;VALUE=DATE:20270218
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 12\nUhrzeit: von der D
+ VOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: h
+ ttps://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-3a293a54aa189c74baa6b89c@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – SV RV Ohmenheim I
+DTSTART;VALUE=DATE:20270224
+DTEND;VALUE=DATE:20270225
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 13\nUhrzeit: von der DVOS-Q
+ uelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: https:
+ //dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-590855416cc404361ca217f3@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – DC Lonetal Bernstadt I
+DTSTART;VALUE=DATE:20270303
+DTEND;VALUE=DATE:20270304
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 14\nUhrzeit: von der DVOS-Q
+ uelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: https:
+ //dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-708dd5cb39d5e27314ef515e@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:1. DC Göppingen II – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20270309
+DTEND;VALUE=DATE:20270310
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 15\nUhrzeit: von der D
+ VOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: h
+ ttps://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-f6838205882e6f75a0609c82@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:WSV Mehrstetten Fuenfnullois I – TB Gingen Bulls I
+DTSTART;VALUE=DATE:20270317
+DTEND;VALUE=DATE:20270318
+DESCRIPTION:Ligaspiel\nAuswärtsspiel\nSpieltag 16\nUhrzeit: von der D
+ VOS-Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: h
+ ttps://dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-0327b0a7d1d93461a5bf1770@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – TV Steinheim I
+DTSTART;VALUE=DATE:20270407
+DTEND;VALUE=DATE:20270408
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 17\nUhrzeit: von der DVOS-Q
+ uelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: https:
+ //dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:dvos-fa0f33fe7012bc086b1dc7d9@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:TB Gingen Bulls I – Kellerfreunde DJK Göppingen I
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270415
+DESCRIPTION:Ligaspiel\nHeimspiel\nSpieltag 18\nUhrzeit: von der DVOS-Q
+ uelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: https:
+ //dvos.de/liga.php?a_liga=45&p=0
+URL:https://dvos.de/liga.php?a_liga=45&p=0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:cup-1bd9cf0d79d3c931d8288253@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:🏆 POKAL: TB Gingen Bulls I – SV Nersingen-Leibi I
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+DESCRIPTION:DVOS-Pokal\nHeimspiel\nPokalrunde 2\nErgebnis: 6:4\nUhrzei
+ t: von der DVOS-Quelle nicht veröffentlicht\; Termin daher ganztägi
+ g\nQuelle: https://dvos.de/pokal.php
+URL:https://dvos.de/pokal.php
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:cup-c98e6e53f13831b3a257cee9@tbgingenbulls1
+DTSTAMP:20261123T112828Z
+SUMMARY:🏆 POKAL: TB Gingen Bulls I – TV Steinheim I
+DTSTART;VALUE=DATE:20261125
+DTEND;VALUE=DATE:20261126
+DESCRIPTION:DVOS-Pokal\nHeimspiel\nPokalrunde 3\nUhrzeit: von der DVOS
+ -Quelle nicht veröffentlicht\; Termin daher ganztägig\nQuelle: http
+ s://dvos.de/pokal.php
+URL:https://dvos.de/pokal.php
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
