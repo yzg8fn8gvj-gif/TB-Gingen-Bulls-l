@@ -1,0 +1,19 @@
+{
+  "name": "TB Gingen Bulls – Mannschaften",
+  "short_name": "Bulls",
+  "description": "Tabelle, Ergebnisse, Spielpläne und Auswertungen aller vier TB Gingen Bulls Mannschaften",
+  "lang": "de-DE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10151c",
+  "theme_color": "#101b32",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

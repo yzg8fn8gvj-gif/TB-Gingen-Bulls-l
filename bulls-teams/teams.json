@@ -1,0 +1,62 @@
+[
+  {
+    "id": "bulls-i",
+    "label": "Mannschaft I",
+    "teamName": "TB Gingen Bulls I",
+    "shortName": "Bulls I",
+    "tag": "BULLS I",
+    "leagueId": 45,
+    "leagueName": "Bezirksoberliga A",
+    "leagueShort": "BOL A",
+    "division": "bezirksoberliga",
+    "promotionSlots": 2,
+    "relegationSlots": 1,
+    "hasCash": true,
+    "season": "2026/2027"
+  },
+  {
+    "id": "bulls-ii",
+    "label": "Mannschaft II",
+    "teamName": "TB Gingen Bulls II",
+    "shortName": "Bulls II",
+    "tag": "BULLS II",
+    "leagueId": 47,
+    "leagueName": "Bezirksliga A",
+    "leagueShort": "BZL A",
+    "division": "bezirksliga",
+    "promotionSlots": 4,
+    "relegationSlots": 1,
+    "hasCash": false,
+    "season": "2026/2027"
+  },
+  {
+    "id": "bulls-iii",
+    "label": "Mannschaft III",
+    "teamName": "TB Gingen Bulls III",
+    "shortName": "Bulls III",
+    "tag": "BULLS III",
+    "leagueId": 47,
+    "leagueName": "Bezirksliga A",
+    "leagueShort": "BZL A",
+    "division": "bezirksliga",
+    "promotionSlots": 4,
+    "relegationSlots": 1,
+    "hasCash": false,
+    "season": "2026/2027"
+  },
+  {
+    "id": "bulls-iv",
+    "label": "Mannschaft IV",
+    "teamName": "TB Gingen Bulls IV",
+    "shortName": "Bulls IV",
+    "tag": "BULLS IV",
+    "leagueId": 51,
+    "leagueName": "Kreisliga B",
+    "leagueShort": "KL B",
+    "division": "kreisliga",
+    "promotionSlots": 3,
+    "relegationSlots": 0,
+    "hasCash": false,
+    "season": "2026/2027"
+  }
+]
