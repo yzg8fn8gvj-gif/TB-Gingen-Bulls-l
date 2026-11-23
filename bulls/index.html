@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101b32">
-<meta name="description" content="TB Gingen Bulls I – Tabelle, Ergebnisse, Spielplan und Kalenderabo">
+<meta name="description" content="TB Gingen Bulls I – Tabelle, Ergebnisse, Spielplan, Kasse und Strafen">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -81,6 +81,10 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 .zoneGreen{background:#cceacb}.zoneRed{background:#f4cccc}
 /* Eigene Mannschaft neutral grau markieren – auch wenn sie auf einem Randplatz steht */
 .table tr.ourteam td{background:rgba(148,163,184,.18);color:#e2e8f0;font-weight:850}
+.kasseFrame{display:block;width:100%;height:820px;max-height:78vh;min-height:620px;border:1px solid #3b4858;border-radius:13px;background:#151d27}
+.kasseIntro{font-size:12px;color:#bac5d3;line-height:1.5}
+.kasseAction{display:flex;flex-wrap:wrap;gap:8px}
+@media(max-width:420px){.kasseFrame{height:760px;min-height:560px}}
 </style>
 </head>
 <body>
@@ -101,6 +105,7 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
     </div>
     <div class="card"><div class="cardtitle">Letztes Spiel</div><div id="lastMatch"><div class="empty">Spielinformationen werden geladen.</div></div></div>
     <div class="card"><div class="cardtitle">Nächstes Spiel</div><div id="nextMatch"><div class="empty">Spielplan wird geladen.</div></div></div>
+    <div class="card"><div class="cardtitle">Mannschaftskasse & Strafen</div><p class="tiny muted">Eure aktuelle Kasse, offene Strafen und die Wall of Shame findest du jetzt direkt in der Bulls-App.</p><div class="actions"><a class="btn primary" href="#kasse">💶 Kasse & Strafen öffnen</a></div></div>
     <div class="card"><div class="cardtitle">Dein Bulls-Kalender</div><p class="tiny muted">Einmal abonnieren – der Feed wird automatisch etwa alle 15 Minuten mit dem DVOS-Spielplan abgeglichen. Spielverlegungen und neue Ergebnisse werden übernommen.</p><div class="actions"><a class="btn primary" id="calendarSubscribeHome" href="#" aria-disabled="true">🗓️ Kalender abonnieren</a><a class="btn" id="calendarDirectHome" href="./calendar.ics">ICS öffnen</a></div></div>
     <div class="notice"><strong>Direkt aus der Quelle</strong>Die App zeigt offizielle Tabellen- und Spielplandaten. Die DVOS-Seite veröffentlicht für diese Ansicht keine Spielbeginn-Uhrzeit; Spiele werden daher im Kalender als Ganztagstermine angelegt.</div>
   </section>
@@ -158,6 +163,22 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
     </div>
   </section>
 
+  <section class="screen" id="kasse">
+    <div class="sectionhead"><div><div class="eyebrow">Mannschaftskasse · Kassencapitano</div><h2>Kasse & Strafen</h2></div><span class="pill">🐂 Bulls I</span></div>
+    <div class="card">
+      <div class="cardtitle">Eure aktuelle Mannschaftskasse</div>
+      <p class="kasseIntro">Hier findest du deine aktuellen Strafen, offene Monatsbeiträge und den Überblick der Mannschaft. Öffne die Spieleransicht und tippe einmal auf <b>„Das bin ich“</b>. Ein eigenes Kassencapitano-Konto ist dafür nicht nötig.</p>
+      <div class="kasseAction" style="margin:12px 0">
+        <a class="btn primary" id="kasseOpen" href="https://kassencapitano.de/?team=213c4037a86ffee7d8d40fe7&code=0903" target="_blank" rel="noopener noreferrer">Kassencapitano im Browser öffnen ↗</a>
+        <a class="btn" href="https://apps.apple.com/de/app/id6793289508" target="_blank" rel="noopener noreferrer">iPhone-App</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=de.kassencapitano.app" target="_blank" rel="noopener noreferrer">Android-App</a>
+      </div>
+      <iframe class="kasseFrame" id="kasseFrame" title="TB Gingen Bulls Mannschaftskasse und Strafen bei Kassencapitano" loading="lazy" referrerpolicy="no-referrer" src="https://kassencapitano.de/?team=213c4037a86ffee7d8d40fe7&code=0903"></iframe>
+      <p class="tiny muted" style="margin-top:10px">Falls Kassencapitano nicht innerhalb der App angezeigt wird, nutze bitte „Kassencapitano im Browser öffnen“. Die Spieleransicht funktioniert dort ebenfalls über denselben Team-Link.</p>
+    </div>
+    <div class="tiny muted" style="padding:4px 2px">Die Kasse und ihre Einträge werden direkt bei Kassencapitano verwaltet. Änderungen müssen nicht in der Bulls-App nachgetragen werden.</div>
+  </section>
+
   <section class="screen" id="info">
     <div class="sectionhead"><div><div class="eyebrow">Verbindung & Quelle</div><h2>App-Informationen</h2></div></div>
     <div class="card"><div class="cardtitle">Offizielle DVOS-Liga</div><div class="tiny muted" id="sourceDetails">Bezirksoberliga A · Liga-ID 45 · Saison 2026/2027</div><div class="actions"><a class="btn primary" id="sourceLink" target="_blank" rel="noopener" href="https://dvos.de/liga.php?a_liga=45&p=0">DVOS-Ligaseite öffnen ↗</a></div></div>
@@ -176,6 +197,7 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
   <a class="navlink" href="#spielplan"><span class="ico">🗓️</span><span>Spielplan</span></a>
   <a class="navlink navlong" href="#mannschaftstabelle"><span class="ico">🎯</span><span>Mannschaftstabelle</span></a>
   <a class="navlink" href="#livebericht"><span class="ico">🔴</span><span>Live-Spielbericht</span></a>
+  <a class="navlink" href="#kasse"><span class="ico">💶</span><span>Kasse & Strafen</span></a>
   <a class="navlink" href="#info"><span class="ico">ⓘ</span><span>Info</span></a>
 </div></nav>
 <script>
