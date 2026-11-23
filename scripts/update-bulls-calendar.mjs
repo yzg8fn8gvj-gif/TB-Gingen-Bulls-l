@@ -302,37 +302,29 @@ function buildReturnFixtures(fixtures) {
 }
 const returnMatches = buildReturnFixtures(matches);
 
-async function findTeamAnalysisUrl() {
-  const fallback = 'https://dvos.de/ligaauswertung.php?seite=0';
+async function fetchTeamAnalysisPage() {
+  const fallback = 'https://www.dvos.de/ligaauswertung.php?seite=0';
   try {
-    const response = await fetch(fallback, {
+    const initial = await fetch(fallback, {
       headers: { 'User-Agent': 'TB-Gingen-Bulls-I-Kalender/1.0', Accept: 'text/html,application/xhtml+xml' },
       signal: AbortSignal.timeout(30000)
     });
-    if (!response.ok) return fallback;
-    const page = await response.text();
+    if (!initial.ok) throw new Error('DVOS-Auswahlseite HTTP ' + initial.status);
+    const page = await initial.text();
+    const cookies = typeof initial.headers.getSetCookie === 'function'
+      ? initial.headers.getSetCookie().map(value => value.split(';')[0]).filter(Boolean)
+      : (initial.headers.get('set-cookie') ? [initial.headers.get('set-cookie').split(';')[0]] : []);
+
     for (const formMatch of page.matchAll(/<form\b([^>]*)>([\s\S]*?)<\/form>/gi)) {
       const formAttrs = formMatch[1];
       const formHtml = formMatch[2];
-      const formMethod = (formAttrs.match(/method\s*=\s*["']([^"']*)["']/i)?.[1] || 'GET').toUpperCase();
-      const formActionRaw = formAttrs.match(/action\s*=\s*["']([^"']*)["']/i)?.[1] || fallback;
-      const selectDiagnostics = [...formHtml.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/gi)].map(select => ({
-        name: select[1].match(/name\s*=\s*["']([^"']+)["']/i)?.[1] || null,
-        optionCount: [...select[2].matchAll(/<option\b/gi)].length,
-        matchingOptions: [...select[2].matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)].map(option => ({
-          value: option[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] || '',
-          label: clean(option[2])
-        })).filter(option => /Gingen Bulls I/i.test(option.label)).slice(0, 3)
-      }));
-      const inputDiagnostics = [...formHtml.matchAll(/<input\b([^>]*)>/gi)].map(input => ({
-        name: input[1].match(/name\s*=\s*["']([^"']+)["']/i)?.[1] || null,
-        type: input[1].match(/type\s*=\s*["']([^"']+)["']/i)?.[1] || 'text',
-        value: input[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] || ''
-      }));
-      console.log('DVOS-Auswertungsformular:', JSON.stringify({method:formMethod,action:formActionRaw,selects:selectDiagnostics,inputs:inputDiagnostics}));
-      const actionMatch = formAttrs.match(/action\\s*=\\s*["']([^"']*)["']/i);
+      const actionMatch = formAttrs.match(/action\s*=\s*["']([^"']*)["']/i);
       const action = new URL(actionMatch?.[1] || fallback, fallback);
+      const method = (formAttrs.match(/method\s*=\s*["']([^"']*)["']/i)?.[1] || 'GET').toUpperCase();
       const params = new URLSearchParams();
+
+      // Include normal hidden fields and every select's current/default value,
+      // exactly as a browser does when the user submits the DVOS form.
       for (const input of formHtml.matchAll(/<input\b([^>]*)>/gi)) {
         const attrs = input[1];
         const name = attrs.match(/name\s*=\s*["']([^"']+)["']/i)?.[1];
@@ -340,28 +332,89 @@ async function findTeamAnalysisUrl() {
         const type = attrs.match(/type\s*=\s*["']([^"']+)["']/i)?.[1] || 'text';
         if (name && value !== undefined && type.toLowerCase() === 'hidden') params.set(name, decode(value));
       }
+
+      let foundTeam = false;
       for (const select of formHtml.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/gi)) {
-        const selectName = select[1].match(/name\s*=\s*["']([^"']+)["']/i)?.[1];
-        if (!selectName) continue;
-        for (const option of select[2].matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)) {
-          if (clean(option[2]).toLowerCase() !== config.teamName.toLowerCase()) continue;
-          const optionValue = option[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1];
-          if (!optionValue) continue;
-          params.set(selectName, decode(optionValue));
-          params.set('ref1', 'id_m');
-          params.set('ref2', decode(optionValue));
-          action.search = params.toString();
-          console.log('DVOS-Mannschaftsauswertung gefunden: ' + action.href);
-          return action.href;
+        const attrs = select[1];
+        const name = attrs.match(/name\s*=\s*["']([^"']+)["']/i)?.[1];
+        if (!name) continue;
+        const options = [...select[2].matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)].map(option => ({
+          attrs: option[1],
+          value: option[1].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] ?? clean(option[2]),
+          label: clean(option[2]),
+          selected: /\bselected\b/i.test(option[1])
+        }));
+        if (!options.length) continue;
+        let chosen = options.find(option => option.selected) || options[0];
+        const teamOption = options.find(option => option.label.toLowerCase() === config.teamName.toLowerCase());
+        if (teamOption) {
+          chosen = teamOption;
+          foundTeam = true;
+          console.log('DVOS-Mannschaftsauswertung: ' + config.teamName + ' über Feld ' + name + ' mit Wert ' + chosen.value);
         }
+        params.set(name, decode(chosen.value));
       }
+      if (!foundTeam) continue;
+
+      const headers = {
+        'User-Agent': 'TB-Gingen-Bulls-I-Kalender/1.0',
+        Accept: 'text/html,application/xhtml+xml',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        Referer: fallback,
+        Origin: 'https://www.dvos.de'
+      };
+      if (cookies.length) headers.Cookie = cookies.join('; ');
+      let response;
+      if (method === 'GET') {
+        const getUrl = new URL(action.href);
+        for (const [key, value] of params) getUrl.searchParams.set(key, value);
+        response = await fetch(getUrl, { headers, signal: AbortSignal.timeout(30000) });
+      } else {
+        response = await fetch(action, {
+          method,
+          headers,
+          body: params.toString(),
+          redirect: 'follow',
+          signal: AbortSignal.timeout(30000)
+        });
+      }
+      const resultHtml = await response.text();
+      const resultText = clean(resultHtml);
+      const escapedTeamName = config.teamName.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
+      const teamMarker = new RegExp('Mannschaft\\s*:\\s*' + escapedTeamName, 'i');
+      const validResult = response.ok && teamMarker.test(resultText) && !/Bitte eine Auswertung auswählen/i.test(resultText);
+      console.log('DVOS-Auswertung POST/GET-Prüfung:', JSON.stringify({
+        method,
+        action: action.href,
+        status: response.status,
+        finalUrl: response.url,
+        fields: [...params.keys()],
+        teamVerified: validResult,
+        responseLength: resultHtml.length,
+        title: resultText.slice(0, 260)
+      }));
+
+      if (!validResult) continue;
+      const pageWithBase = /<head\b[^>]*>/i.test(resultHtml)
+        ? resultHtml.replace(/<head\b[^>]*>/i, '$&<base href="https://www.dvos.de/">')
+        : '<!doctype html><html lang="de"><head><meta charset="utf-8"><base href="https://www.dvos.de/"></head><body>' + resultHtml + '</body></html>';
+      await writeFile(new URL('../bulls/team-analysis.html', import.meta.url), pageWithBase, 'utf8');
+      return {
+        url: './team-analysis.html',
+        sourceUrl: response.url,
+        method,
+        verified: true
+      };
     }
+    throw new Error('DVOS-Auswertungsformular oder Mannschaftsauswahl nicht gefunden.');
   } catch (error) {
-    console.warn('DVOS-Mannschaftsauswertung konnte nicht bestimmt werden:', error.message);
+    console.warn('DVOS-Mannschaftsauswertung nicht verfügbar:', error.message);
+    const fallbackHtml = '<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DVOS-Mannschaftsauswertung</title><style>body{font:16px system-ui;padding:24px;background:#111923;color:#eef}a{color:#9de36a}</style></head><body><h2>DVOS-Auswertung momentan nicht verfügbar</h2><p>Die Originalauswertung konnte beim letzten Datenabruf nicht geladen werden.</p><p><a href="' + fallback + '" target="_blank" rel="noopener">DVOS-Auswertung direkt öffnen</a></p></body></html>';
+    await writeFile(new URL('../bulls/team-analysis.html', import.meta.url), fallbackHtml, 'utf8');
+    return { url: './team-analysis.html', sourceUrl: fallback, method: 'POST', verified: false };
   }
-  return fallback;
 }
-const teamAnalysisUrl = await findTeamAnalysisUrl();
+const teamAnalysis = await fetchTeamAnalysisPage();
 const cupResponse = await fetch('https://dvos.de/print_pokal.php', {
   headers: { 'User-Agent': 'TB-Gingen-Bulls-I-Kalender/1.0', Accept: 'text/html,application/xhtml+xml' },
   signal: AbortSignal.timeout(30000)
@@ -401,7 +454,10 @@ const data = {
     scrapedLeaguePages: pageDiagnostics,
     returnRoundAvailable: returnMatches.length >= 45,
     returnRoundType: returnMatches.length >= 45 && returnMatches.every(game => !game.inferred) ? 'official' : (returnMatches.length ? 'inferred' : 'unavailable'),
-    teamAnalysisUrl,
+    teamAnalysisUrl: teamAnalysis.url,
+    teamAnalysisSourceUrl: teamAnalysis.sourceUrl,
+    teamAnalysisMethod: teamAnalysis.method,
+    teamAnalysisVerified: teamAnalysis.verified,
     calendarNote: 'Die DVOS-Spielplanansicht veröffentlicht kein Spielbeginn-Uhrzeitfeld. Kalendertermine werden deshalb als Ganztagstermine geführt.'
   },
   standings,
