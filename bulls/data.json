@@ -1,0 +1,1525 @@
+{
+  "meta": {
+    "teamName": "TB Gingen Bulls I",
+    "leagueName": "Bezirksoberliga A",
+    "season": "2026/2027",
+    "leagueId": 45,
+    "sourceUrl": "https://dvos.de/liga.php?a_liga=45&p=0",
+    "updatedAt": "2026-11-23T11:28:28.151Z",
+    "updateFrequencyHours": 1,
+    "scrapedLeaguePages": [
+      {
+        "page": 0,
+        "parsed": 15,
+        "added": 15
+      },
+      {
+        "page": 1,
+        "parsed": 90,
+        "added": 75
+      },
+      {
+        "page": 2,
+        "parsed": 90,
+        "added": 0
+      },
+      {
+        "page": 3,
+        "parsed": 90,
+        "added": 0
+      }
+    ],
+    "returnRoundAvailable": true,
+    "returnRoundType": "official",
+    "teamAnalysisUrl": "https://dvos.de/ligaauswertung.php?input%5B3%5D=487&ref1=id_m&ref2=487",
+    "calendarNote": "Die DVOS-Spielplanansicht veröffentlicht kein Spielbeginn-Uhrzeitfeld. Kalendertermine werden deshalb als Ganztagstermine geführt."
+  },
+  "standings": [
+    {
+      "rank": 1,
+      "team": "TSG Nattheim Darts I",
+      "played": 8,
+      "points": 16,
+      "setsFor": 60,
+      "setsAgainst": 20,
+      "wins": 8,
+      "draws": 0,
+      "losses": 0
+    },
+    {
+      "rank": 2,
+      "team": "SV RV Ohmenheim I",
+      "played": 8,
+      "points": 12,
+      "setsFor": 53,
+      "setsAgainst": 27,
+      "wins": 5,
+      "draws": 2,
+      "losses": 1
+    },
+    {
+      "rank": 2,
+      "team": "TSV Game Over II",
+      "played": 8,
+      "points": 12,
+      "setsFor": 53,
+      "setsAgainst": 27,
+      "wins": 6,
+      "draws": 0,
+      "losses": 2
+    },
+    {
+      "rank": 4,
+      "team": "TB Gingen Bulls I",
+      "played": 8,
+      "points": 12,
+      "setsFor": 52,
+      "setsAgainst": 28,
+      "wins": 5,
+      "draws": 2,
+      "losses": 1
+    },
+    {
+      "rank": 5,
+      "team": "Kellerfreunde DJK Göppingen I",
+      "played": 8,
+      "points": 11,
+      "setsFor": 44,
+      "setsAgainst": 36,
+      "wins": 5,
+      "draws": 1,
+      "losses": 2
+    },
+    {
+      "rank": 6,
+      "team": "DCU Oberensingen I",
+      "played": 8,
+      "points": 6,
+      "setsFor": 35,
+      "setsAgainst": 45,
+      "wins": 3,
+      "draws": 0,
+      "losses": 5
+    },
+    {
+      "rank": 7,
+      "team": "1. DC Göppingen II",
+      "played": 8,
+      "points": 4,
+      "setsFor": 25,
+      "setsAgainst": 55,
+      "wins": 2,
+      "draws": 0,
+      "losses": 6
+    },
+    {
+      "rank": 8,
+      "team": "WSV Mehrstetten Fuenfnullois I",
+      "played": 8,
+      "points": 3,
+      "setsFor": 24,
+      "setsAgainst": 56,
+      "wins": 1,
+      "draws": 1,
+      "losses": 6
+    },
+    {
+      "rank": 9,
+      "team": "TV Steinheim I",
+      "played": 8,
+      "points": 2,
+      "setsFor": 29,
+      "setsAgainst": 51,
+      "wins": 0,
+      "draws": 2,
+      "losses": 6
+    },
+    {
+      "rank": 10,
+      "team": "DC Lonetal Bernstadt I",
+      "played": 8,
+      "points": 2,
+      "setsFor": 25,
+      "setsAgainst": 55,
+      "wins": 0,
+      "draws": 2,
+      "losses": 6
+    }
+  ],
+  "matches": [
+    {
+      "id": "dvos-10e02e17c89e176f1ea4bbbb",
+      "round": 1,
+      "date": "2026-09-22",
+      "home": "TSG Nattheim Darts I",
+      "away": "1. DC Göppingen II",
+      "homeScore": 9,
+      "awayScore": 1,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=4&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-432d3e472e28315b16278552",
+      "round": 1,
+      "date": "2026-09-22",
+      "home": "TV Steinheim I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=5&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-1546f4a8b434f4f8d068aa35",
+      "round": 1,
+      "date": "2026-09-23",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "DCU Oberensingen I",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=40&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-f32966eeaebd7dc3d986cae5",
+      "round": 1,
+      "date": "2026-09-23",
+      "home": "TSV Game Over II",
+      "away": "TB Gingen Bulls I",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=41&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-787fdc4578478f00357c0057",
+      "round": 1,
+      "date": "2026-09-23",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": 1,
+      "awayScore": 9,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=42&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-93d1867feabb1708bd580915",
+      "round": 2,
+      "date": "2026-09-29",
+      "home": "1. DC Göppingen II",
+      "away": "TSV Game Over II",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=80&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-793085f6ee4f30b993d0dfc3",
+      "round": 2,
+      "date": "2026-09-30",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": 5,
+      "awayScore": 5,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=106&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-23d076608cadcd6ee812e8cd",
+      "round": 2,
+      "date": "2026-09-30",
+      "home": "DCU Oberensingen I",
+      "away": "TV Steinheim I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=107&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-0d5436479da653510a37f20d",
+      "round": 2,
+      "date": "2026-09-30",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": 5,
+      "awayScore": 5,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=108&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-010492de2bb922f9ea0f34e6",
+      "round": 2,
+      "date": "2026-09-30",
+      "home": "TB Gingen Bulls I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": 3,
+      "awayScore": 7,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=109&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-9bbbdf9159f8482a8456e137",
+      "round": 3,
+      "date": "2026-10-06",
+      "home": "1. DC Göppingen II",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=157&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-370b1772d942a03dd63164df",
+      "round": 3,
+      "date": "2026-10-07",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TSV Game Over II",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=191&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-6a97a96266194ae1aafee815",
+      "round": 3,
+      "date": "2026-10-07",
+      "home": "TB Gingen Bulls I",
+      "away": "DCU Oberensingen I",
+      "homeScore": 9,
+      "awayScore": 1,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=190&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-c1d604f936f02ba0553c14ad",
+      "round": 3,
+      "date": "2026-10-07",
+      "home": "SV RV Ohmenheim I",
+      "away": "TV Steinheim I",
+      "homeScore": 7,
+      "awayScore": 3,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=189&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-4e4710cee4617840e13a86f7",
+      "round": 3,
+      "date": "2026-10-07",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=188&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-9f709ef08ddeb171410e4578",
+      "round": 4,
+      "date": "2026-10-13",
+      "home": "TSG Nattheim Darts I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": 10,
+      "awayScore": 0,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=231&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-806a51f232007301be456684",
+      "round": 4,
+      "date": "2026-10-13",
+      "home": "TV Steinheim I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": 5,
+      "awayScore": 5,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=232&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-38c45327c241dbcef209ea19",
+      "round": 4,
+      "date": "2026-10-14",
+      "home": "DCU Oberensingen I",
+      "away": "1. DC Göppingen II",
+      "homeScore": 8,
+      "awayScore": 2,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=270&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-a965c91177afdfda30c628a6",
+      "round": 4,
+      "date": "2026-10-14",
+      "home": "SV RV Ohmenheim I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": 5,
+      "awayScore": 5,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=271&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-0ca57dcf40dbf59870afe383",
+      "round": 4,
+      "date": "2026-10-14",
+      "home": "TSV Game Over II",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": 9,
+      "awayScore": 1,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=272&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-e12e631deaa85c14518d4515",
+      "round": 5,
+      "date": "2026-10-20",
+      "home": "1. DC Göppingen II",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=307&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-c8dfe889366daa95130b27bd",
+      "round": 5,
+      "date": "2026-10-21",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TV Steinheim I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=345&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-588804dabbe1303b99291ea4",
+      "round": 5,
+      "date": "2026-10-21",
+      "home": "TSV Game Over II",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=344&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-4617bee237beb21a52c559d4",
+      "round": 5,
+      "date": "2026-10-21",
+      "home": "DCU Oberensingen I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=343&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-13af8282b890022b9fa7d47d",
+      "round": 5,
+      "date": "2026-10-21",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": 1,
+      "awayScore": 9,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=342&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-d1ad08ec33eedc0693416d31",
+      "round": 6,
+      "date": "2026-11-03",
+      "home": "TSG Nattheim Darts I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": 8,
+      "awayScore": 2,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=393&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-fde5227f3bedeec3c22c822d",
+      "round": 6,
+      "date": "2026-11-03",
+      "home": "TV Steinheim I",
+      "away": "TSV Game Over II",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=394&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-7a03c893128b78009b980987",
+      "round": 6,
+      "date": "2026-11-04",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": 7,
+      "awayScore": 3,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=419&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-fa1766e04f31504c18746d13",
+      "round": 6,
+      "date": "2026-11-04",
+      "home": "SV RV Ohmenheim I",
+      "away": "DCU Oberensingen I",
+      "homeScore": 7,
+      "awayScore": 3,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=420&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-698470172686e790e41c4871",
+      "round": 6,
+      "date": "2026-11-04",
+      "home": "TB Gingen Bulls I",
+      "away": "1. DC Göppingen II",
+      "homeScore": 7,
+      "awayScore": 3,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=421&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-77c915b614e48c2e4c807fbf",
+      "round": 7,
+      "date": "2026-11-10",
+      "home": "TSG Nattheim Darts I",
+      "away": "TV Steinheim I",
+      "homeScore": 8,
+      "awayScore": 2,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=461&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-21040ad4a571e46fefb4ecd0",
+      "round": 7,
+      "date": "2026-11-11",
+      "home": "TB Gingen Bulls I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": 8,
+      "awayScore": 2,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=497&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-055975d384c5c00f29ee5b1b",
+      "round": 7,
+      "date": "2026-11-11",
+      "home": "SV RV Ohmenheim I",
+      "away": "1. DC Göppingen II",
+      "homeScore": 8,
+      "awayScore": 2,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=496&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-8cbaadc8b6d1dbf12a533c2a",
+      "round": 7,
+      "date": "2026-11-11",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=495&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-2d943fb021c3d41bfe02305c",
+      "round": 7,
+      "date": "2026-11-11",
+      "home": "DCU Oberensingen I",
+      "away": "TSV Game Over II",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=494&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-128b83063908fbbe1afffbaa",
+      "round": 8,
+      "date": "2026-11-17",
+      "home": "1. DC Göppingen II",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": 7,
+      "awayScore": 3,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=534&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-339db04d7f36776cbce11770",
+      "round": 8,
+      "date": "2026-11-17",
+      "home": "TV Steinheim I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": 5,
+      "awayScore": 5,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=535&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-38cd058a868bf39ebf649c81",
+      "round": 8,
+      "date": "2026-11-18",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": 2,
+      "awayScore": 8,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=570&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-49d3c3a21b96f52d2ad8f8ab",
+      "round": 8,
+      "date": "2026-11-18",
+      "home": "DCU Oberensingen I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": 3,
+      "awayScore": 7,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=571&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-5993ea9284ef1a2ed137ff4b",
+      "round": 8,
+      "date": "2026-11-18",
+      "home": "TSV Game Over II",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": 4,
+      "awayScore": 6,
+      "reportUrl": "https://dvos.de/spielbericht.php?id=572&art=1&a_liga=45&spieltag=3"
+    },
+    {
+      "id": "dvos-b43e29e45f4748983d6cf9d3",
+      "round": 9,
+      "date": "2026-12-01",
+      "home": "1. DC Göppingen II",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-2fba09741165f4083556e5ec",
+      "round": 9,
+      "date": "2026-12-02",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-8985c65e2351b8c32d605e90",
+      "round": 9,
+      "date": "2026-12-02",
+      "home": "SV RV Ohmenheim I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-85dae39766f35a327b1bd461",
+      "round": 9,
+      "date": "2026-12-02",
+      "home": "TSV Game Over II",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-adb7f2eba060c9b940177f46",
+      "round": 9,
+      "date": "2026-12-02",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-00b8e379e234ce3c18f5c94a",
+      "round": 10,
+      "date": "2027-01-19",
+      "home": "1. DC Göppingen II",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-756eefbcf0dab1663a96716f",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "DCU Oberensingen I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3d4d65fe59c5ec5e54eee508",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-df787261d7d577b6993fd2f9",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "SV RV Ohmenheim I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-91b1973f9d1521e960dff991",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "TB Gingen Bulls I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-8552e7f50305e32f4f2bf564",
+      "round": 11,
+      "date": "2027-01-26",
+      "home": "TSG Nattheim Darts I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f844cdf10307cc25af618365",
+      "round": 11,
+      "date": "2027-01-26",
+      "home": "TV Steinheim I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f97ae096ef7f0cba02b62015",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "SV RV Ohmenheim I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-b2671f88b71b5f8bcca206f1",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "TSV Game Over II",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-86b9eb9cb74be31e72a86b96",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-ca64b2bd9b33a74795b19d9e",
+      "round": 12,
+      "date": "2027-02-16",
+      "home": "TV Steinheim I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7093fea02c2bbf8bb41e1c25",
+      "round": 12,
+      "date": "2027-02-16",
+      "home": "TSG Nattheim Darts I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-140599f9f0b942ecd347c1cc",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-002a77f93f17f17c31f1a87e",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "DCU Oberensingen I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-6aefab913c678c21f026143e",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "TSV Game Over II",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3c92496af926ae87f4aeffac",
+      "round": 13,
+      "date": "2027-02-23",
+      "home": "1. DC Göppingen II",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-50f83fd55606e8b35682891d",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7ba2e945724cdc1f49c9b999",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3a293a54aa189c74baa6b89c",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "TB Gingen Bulls I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-4d7bccfa7421eba74e89e854",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-bf983b042b40f8ad44f6899b",
+      "round": 14,
+      "date": "2027-03-02",
+      "home": "TSG Nattheim Darts I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-a3b086d454b566f07bcf2f85",
+      "round": 14,
+      "date": "2027-03-02",
+      "home": "TV Steinheim I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-590855416cc404361ca217f3",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "TB Gingen Bulls I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7d418082ec42cfbaea2bdb5a",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "SV RV Ohmenheim I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-e56c3ae80fe0b5a6b20185c3",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-708dd5cb39d5e27314ef515e",
+      "round": 15,
+      "date": "2027-03-09",
+      "home": "1. DC Göppingen II",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-dba35c9b5d77fc2333f2e62c",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-5edb4578243a7074241a6bbb",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "DCU Oberensingen I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-e880ec41724b667eee428cca",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "TSV Game Over II",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-b5f14261673658eca49393d8",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-1094ad999508dc4acf533864",
+      "round": 16,
+      "date": "2027-03-16",
+      "home": "1. DC Göppingen II",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f8d2422dc8c8c324e77f6157",
+      "round": 16,
+      "date": "2027-03-16",
+      "home": "TV Steinheim I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f6838205882e6f75a0609c82",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-d8208081d99a863a96507b11",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "TSV Game Over II",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-28c50101065f5f42b717c11e",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-229528b8d9e39a8c86dcb437",
+      "round": 17,
+      "date": "2027-04-06",
+      "home": "TSG Nattheim Darts I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-36db90d054846370b9ad5205",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-69581fa7b292b5e99827e1c1",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "SV RV Ohmenheim I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-0327b0a7d1d93461a5bf1770",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "TB Gingen Bulls I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-95a14ca86efe1ca0356e6bd5",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3e5f391b0f5859b4e4094632",
+      "round": 18,
+      "date": "2027-04-13",
+      "home": "TSG Nattheim Darts I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-2221b0d3e94742b98d279ffe",
+      "round": 18,
+      "date": "2027-04-13",
+      "home": "TV Steinheim I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-51d73ee67f8f08ed6bb525fe",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-2f6a4c56b544eaac0c958766",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "DCU Oberensingen I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-fa0f33fe7012bc086b1dc7d9",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "TB Gingen Bulls I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    }
+  ],
+  "returnMatches": [
+    {
+      "id": "dvos-00b8e379e234ce3c18f5c94a",
+      "round": 10,
+      "date": "2027-01-19",
+      "home": "1. DC Göppingen II",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-756eefbcf0dab1663a96716f",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "DCU Oberensingen I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3d4d65fe59c5ec5e54eee508",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-df787261d7d577b6993fd2f9",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "SV RV Ohmenheim I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-91b1973f9d1521e960dff991",
+      "round": 10,
+      "date": "2027-01-20",
+      "home": "TB Gingen Bulls I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-8552e7f50305e32f4f2bf564",
+      "round": 11,
+      "date": "2027-01-26",
+      "home": "TSG Nattheim Darts I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f844cdf10307cc25af618365",
+      "round": 11,
+      "date": "2027-01-26",
+      "home": "TV Steinheim I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f97ae096ef7f0cba02b62015",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "SV RV Ohmenheim I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-b2671f88b71b5f8bcca206f1",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "TSV Game Over II",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-86b9eb9cb74be31e72a86b96",
+      "round": 11,
+      "date": "2027-01-27",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-ca64b2bd9b33a74795b19d9e",
+      "round": 12,
+      "date": "2027-02-16",
+      "home": "TV Steinheim I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7093fea02c2bbf8bb41e1c25",
+      "round": 12,
+      "date": "2027-02-16",
+      "home": "TSG Nattheim Darts I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-140599f9f0b942ecd347c1cc",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-002a77f93f17f17c31f1a87e",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "DCU Oberensingen I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-6aefab913c678c21f026143e",
+      "round": 12,
+      "date": "2027-02-17",
+      "home": "TSV Game Over II",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3c92496af926ae87f4aeffac",
+      "round": 13,
+      "date": "2027-02-23",
+      "home": "1. DC Göppingen II",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-50f83fd55606e8b35682891d",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7ba2e945724cdc1f49c9b999",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3a293a54aa189c74baa6b89c",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "TB Gingen Bulls I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-4d7bccfa7421eba74e89e854",
+      "round": 13,
+      "date": "2027-02-24",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-bf983b042b40f8ad44f6899b",
+      "round": 14,
+      "date": "2027-03-02",
+      "home": "TSG Nattheim Darts I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-a3b086d454b566f07bcf2f85",
+      "round": 14,
+      "date": "2027-03-02",
+      "home": "TV Steinheim I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-590855416cc404361ca217f3",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "TB Gingen Bulls I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-7d418082ec42cfbaea2bdb5a",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "SV RV Ohmenheim I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-e56c3ae80fe0b5a6b20185c3",
+      "round": 14,
+      "date": "2027-03-03",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-708dd5cb39d5e27314ef515e",
+      "round": 15,
+      "date": "2027-03-09",
+      "home": "1. DC Göppingen II",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-dba35c9b5d77fc2333f2e62c",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-5edb4578243a7074241a6bbb",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "DCU Oberensingen I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-e880ec41724b667eee428cca",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "TSV Game Over II",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-b5f14261673658eca49393d8",
+      "round": 15,
+      "date": "2027-03-10",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-1094ad999508dc4acf533864",
+      "round": 16,
+      "date": "2027-03-16",
+      "home": "1. DC Göppingen II",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f8d2422dc8c8c324e77f6157",
+      "round": 16,
+      "date": "2027-03-16",
+      "home": "TV Steinheim I",
+      "away": "TSG Nattheim Darts I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-f6838205882e6f75a0609c82",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "TB Gingen Bulls I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-d8208081d99a863a96507b11",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "TSV Game Over II",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-28c50101065f5f42b717c11e",
+      "round": 16,
+      "date": "2027-03-17",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-229528b8d9e39a8c86dcb437",
+      "round": 17,
+      "date": "2027-04-06",
+      "home": "TSG Nattheim Darts I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-36db90d054846370b9ad5205",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "Kellerfreunde DJK Göppingen I",
+      "away": "DCU Oberensingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-69581fa7b292b5e99827e1c1",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "SV RV Ohmenheim I",
+      "away": "DC Lonetal Bernstadt I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-0327b0a7d1d93461a5bf1770",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "TB Gingen Bulls I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-95a14ca86efe1ca0356e6bd5",
+      "round": 17,
+      "date": "2027-04-07",
+      "home": "WSV Mehrstetten Fuenfnullois I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-3e5f391b0f5859b4e4094632",
+      "round": 18,
+      "date": "2027-04-13",
+      "home": "TSG Nattheim Darts I",
+      "away": "SV RV Ohmenheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-2221b0d3e94742b98d279ffe",
+      "round": 18,
+      "date": "2027-04-13",
+      "home": "TV Steinheim I",
+      "away": "1. DC Göppingen II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-51d73ee67f8f08ed6bb525fe",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "DC Lonetal Bernstadt I",
+      "away": "TSV Game Over II",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-2f6a4c56b544eaac0c958766",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "DCU Oberensingen I",
+      "away": "WSV Mehrstetten Fuenfnullois I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    },
+    {
+      "id": "dvos-fa0f33fe7012bc086b1dc7d9",
+      "round": 18,
+      "date": "2027-04-14",
+      "home": "TB Gingen Bulls I",
+      "away": "Kellerfreunde DJK Göppingen I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    }
+  ],
+  "cupMatches": [
+    {
+      "id": "cup-1bd9cf0d79d3c931d8288253",
+      "round": "2",
+      "date": "2026-10-28",
+      "home": "TB Gingen Bulls I",
+      "away": "SV Nersingen-Leibi I",
+      "homeScore": 6,
+      "awayScore": 4,
+      "reportUrl": null
+    },
+    {
+      "id": "cup-c98e6e53f13831b3a257cee9",
+      "round": "3",
+      "date": "2026-11-25",
+      "home": "TB Gingen Bulls I",
+      "away": "TV Steinheim I",
+      "homeScore": null,
+      "awayScore": null,
+      "reportUrl": null
+    }
+  ]
+}
