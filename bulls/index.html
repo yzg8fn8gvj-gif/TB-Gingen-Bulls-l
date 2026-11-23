@@ -57,6 +57,21 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 #liveReportFrame{display:block;width:100%;height:760px;border:1px solid #3b4858;border-radius:13px;background:#fff}
 @media(min-width:600px){.navinner .navlink{font-size:10px}.navinner .navlink.navlong{font-size:9px}}
 
+
+/* Echter Sieger – Hintergrundmarkierung für Heim- und Auswärtsteam */
+.itemteams .match-winner{
+  display:inline-block;
+  padding:2px 7px;
+  margin:0 -7px;
+  border-radius:7px;
+  color:#c9f8a7;
+  background:rgba(145,227,76,.19);
+  border:1px solid rgba(145,227,76,.38);
+  font-weight:950;
+  text-shadow:0 0 10px rgba(145,227,76,.18);
+}
+.itemteams .match-winner::after{content:"  ✓";color:#91e34c;font-weight:950}
+.itemresult .winner-score{color:#a9ef75;font-weight:950;text-shadow:0 0 10px rgba(145,227,76,.24)}
 </style>
 </head>
 <body>
@@ -324,8 +339,3 @@ if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceW
 </script>
 </body>
 </html>
-
-/* Sieger in Ergebnislisten markieren – unabhängig von Heim-/Auswärtsposition */
-.itemteams .match-winner{color:#baf28c;font-weight:950;text-shadow:0 0 10px rgba(145,227,76,.22)}
-.itemteams .match-winner::after{content:" ✓";color:#91e34c;font-weight:950}
-.itemresult .winner-score{color:#a9ef75;font-weight:950;text-shadow:0 0 10px rgba(145,227,76,.24)}
