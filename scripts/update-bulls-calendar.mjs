@@ -347,6 +347,11 @@ async function fetchTeamAnalysisPage() {
         if (!options.length) continue;
         let chosen = options.find(option => option.selected) || options[0];
         const teamOption = options.find(option => option.label.toLowerCase() === config.teamName.toLowerCase());
+        console.log('DVOS-Auswahlfeld ' + name + ': ' + JSON.stringify({
+          selected: options.filter(option => option.selected).map(option => ({value:option.value,label:option.label})),
+          first: options.slice(0, 3).map(option => ({value:option.value,label:option.label})),
+          team: teamOption ? {value:teamOption.value,label:teamOption.label} : null
+        }));
         if (teamOption) {
           chosen = teamOption;
           foundTeam = true;
@@ -355,6 +360,14 @@ async function fetchTeamAnalysisPage() {
         params.set(name, decode(chosen.value));
       }
       if (!foundTeam) continue;
+      const submitControls = [...formHtml.matchAll(/<(button|input)\b([^>]*)>/gi)].map(match => ({
+        tag: match[1],
+        name: match[2].match(/name\s*=\s*["']([^"']+)["']/i)?.[1] || null,
+        type: match[2].match(/type\s*=\s*["']([^"']+)["']/i)?.[1] || null,
+        value: match[2].match(/value\s*=\s*["']([^"']*)["']/i)?.[1] || null,
+        attrs: match[2].slice(0,180)
+      }));
+      console.log('DVOS-Formularattribute:', JSON.stringify({formAttrs,submitControls,params:[...params.entries()]}));
 
       const headers = {
         'User-Agent': 'TB-Gingen-Bulls-I-Kalender/1.0',
@@ -383,6 +396,11 @@ async function fetchTeamAnalysisPage() {
       const escapedTeamName = config.teamName.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
       const teamMarker = new RegExp('Mannschaft\\s*:\\s*' + escapedTeamName, 'i');
       const validResult = response.ok && teamMarker.test(resultText) && !/Bitte eine Auswertung auswählen/i.test(resultText);
+      const clueMarkers = ['Bitte eine Auswertung auswählen','Auswertung für','Mannschaft:','Punkte','Gesamt','starten'];
+      console.log('DVOS-Ergebnis-Marker:', JSON.stringify(clueMarkers.map(marker => {
+        const index = resultText.toLowerCase().indexOf(marker.toLowerCase());
+        return {marker,index,snippet:index>=0?resultText.slice(Math.max(0,index-80),Math.min(resultText.length,index+240)):''};
+      })));
       console.log('DVOS-Auswertung POST/GET-Prüfung:', JSON.stringify({
         method,
         action: action.href,
