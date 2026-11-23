@@ -72,6 +72,13 @@ body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 }
 .itemteams .match-winner::after{content:"  ✓";color:#91e34c;font-weight:950}
 .itemresult .winner-score{color:#a9ef75;font-weight:950;text-shadow:0 0 10px rgba(145,227,76,.24)}
+
+/* Tabellenzonen: Plätze 1–2 Aufstieg, letzter Platz Abstieg */
+.table tr.promotion td{background:#edf8ed}
+.table tr.relegation td{background:#fff0f0}
+.zoneLegend{display:inline-flex;align-items:center;gap:4px;margin-right:5px}
+.zoneLegend i{display:inline-block;width:9px;height:9px;border-radius:3px}
+.zoneGreen{background:#cceacb}.zoneRed{background:#f4cccc}
 </style>
 </head>
 <body>
@@ -204,7 +211,7 @@ function matchCard(m){
 function renderTable(){
   const rows=(data.standings||[]).slice().sort((a,b)=>(a.rank??999)-(b.rank??999));
   if(!rows.length){$('tableContent').innerHTML=missing('Keine Tabelle verfügbar','Die letzte DVOS-Antwort enthielt keine auswertbare Tabelle.');return;}
-  $('tableContent').innerHTML='<div class="tablewrap"><table class="table"><thead><tr><th>Pl.</th><th>Mannschaft</th><th>Pkt.</th><th>Sp.</th><th>S</th><th>U</th><th>N</th><th>Sets</th></tr></thead><tbody>'+rows.map((r,i)=>'<tr class="'+(r.team===TEAM?'ourteam':'')+'"><td class="rank">'+esc(r.rank??i+1)+'</td><td class="clubname">'+esc(r.team)+(r.team===TEAM?' ◂':'')+'</td><td><b class="pointsValue">'+esc(r.points??'—')+'</b></td><td>'+esc(r.played??'—')+'</td><td>'+esc(r.wins??'—')+'</td><td>'+esc(r.draws??'—')+'</td><td>'+esc(r.losses??'—')+'</td><td>'+esc(r.setsFor??'—')+':'+esc(r.setsAgainst??'—')+'</td></tr>').join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · Bulls I hervorgehoben</p>';
+  $('tableContent').innerHTML='<div class="tablewrap"><table class="table"><thead><tr><th>Pl.</th><th>Mannschaft</th><th>Pkt.</th><th>Sp.</th><th>S</th><th>U</th><th>N</th><th>Sets</th></tr></thead><tbody>'+rows.map((r,i)=>{const rank=Number(r.rank??i+1);const zone=rank===rows.length?' relegation':(rank<=2?' promotion':'');return '<tr class="'+(r.team===TEAM?'ourteam':'')+zone+'"><td class="rank">'+esc(r.rank??i+1)+'</td><td class="clubname">'+esc(r.team)+(r.team===TEAM?' ◂':'')+'</td><td><b class="pointsValue">'+esc(r.points??'—')+'</b></td><td>'+esc(r.played??'—')+'</td><td>'+esc(r.wins??'—')+'</td><td>'+esc(r.draws??'—')+'</td><td>'+esc(r.losses??'—')+'</td><td>'+esc(r.setsFor??'—')+':'+esc(r.setsAgainst??'—')+'</td></tr>';}).join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · <span class="zoneLegend"><i class="zoneGreen"></i>Aufstiegsplätze</span> · <span class="zoneLegend"><i class="zoneRed"></i>Abstiegsplatz</span> · Bulls I hervorgehoben</p>';
   const ours=rows.find(r=>r.team===TEAM);
   if(ours){$('homeRank').textContent=ours.rank?ours.rank+'.':'—';$('homeRankNote').textContent='von '+rows.length+' Teams';$('homePoints').textContent=ours.points??'—';$('homePointsNote').textContent=(ours.played??'—')+' Spiele';}
 }
@@ -334,7 +341,7 @@ document.querySelectorAll('[data-round]').forEach(btn=>btn.addEventListener('cli
 $('refreshBtn').addEventListener('click',load);
 $('settingsRefresh').addEventListener('click',load);
 route();setCalendarLinks();load();
-if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
 })();
 </script>
 </body>
