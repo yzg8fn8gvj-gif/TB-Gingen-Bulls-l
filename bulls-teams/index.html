@@ -247,7 +247,7 @@ function renderTable(){
     const isOwn=r.team===TEAM;
     const zone=i<promotionSlots?' promotion':(relegationSlots>0&&i>=rows.length-relegationSlots?' relegation':'');
     return '<tr class="'+(isOwn?'ourteam':'')+zone+'"><td class="rank">'+esc(r.rank??i+1)+'</td><td class="clubname">'+esc(r.team)+(isOwn?' ◂':'')+'</td><td><b class="pointsValue">'+esc(r.points??'—')+'</b></td><td>'+esc(r.played??'—')+'</td><td>'+esc(r.wins??'—')+'</td><td>'+esc(r.draws??'—')+'</td><td>'+esc(r.losses??'—')+'</td><td>'+esc(r.setsFor??'—')+':'+esc(r.setsAgainst??'—')+'</td></tr>';
-  }).join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · <span class="zoneLegend"><i class="zoneGreen"></i>Aufstieg: Platz 1–'+promotionSlots+'</span>'+(relegationSlots>0?' · <span class="zoneLegend"><i class="zoneRed"></i>Abstieg: letzte '+(relegationSlots===1?'Platz':'Plätze')+'</span>':'')+' · '+esc(activeTeam.shortName)+' hervorgehoben</p>';
+  }).join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · <span class="zoneLegend"><i class="zoneGreen"></i>Aufstiegsplätze</span>'+(relegationSlots>0?' · <span class="zoneLegend"><i class="zoneRed"></i>Abstiegsplatz</span>':'')+' · '+esc(activeTeam.shortName)+' hervorgehoben<br>'+esc(activeTeam.ruleText)+' · '+esc(activeTeam.seasonRuleNote)+'</p>';
   const ours=rows.find(r=>r.team===TEAM);
   if(ours){$('homeRank').textContent=ours.rank?ours.rank+'.':'—';$('homeRankNote').textContent='von '+rows.length+' Teams';$('homePoints').textContent=ours.points??'—';$('homePointsNote').textContent=(ours.played??'—')+' Spiele';}
 }
