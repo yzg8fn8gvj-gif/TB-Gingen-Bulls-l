@@ -396,9 +396,6 @@ function route(){
   document.querySelectorAll('.navlink').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
   window.scrollTo(0,0);
 }
-document.querySelectorAll('.navlink').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
-  window.scrollTo(0,0);
-}
 document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click',()=>setTimeout(route,20)));
 window.addEventListener('hashchange',route);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});
