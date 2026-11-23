@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 permissions:
   contents: read
@@ -34,6 +34,8 @@ jobs:
         with:
           name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: .
+      - name: Wait for GitHub Pages artifact indexing
+        run: sleep 20
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
