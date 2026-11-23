@@ -140,10 +140,10 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
   <section class="screen" id="mannschaftstabelle">
     <div class="sectionhead"><div><div class="eyebrow">Spielerstatistik · DVOS</div><h2>Mannschaftstabelle</h2></div><span class="pill">🎯 Bulls I</span></div>
     <div class="card">
-      <div class="cardtitle">Auswertung TB Gingen Bulls I</div>
-      <p class="tiny muted" id="teamStatsHelp">Die offizielle DVOS-Auswertung wird hier geladen.</p>
-      <div class="statsSource"><a class="btn primary" id="teamStatsOpen" href="https://dvos.de/ligaauswertung.php" target="_blank" rel="noopener">DVOS-Auswertung öffnen ↗</a></div>
-      <iframe id="teamStatsFrame" title="DVOS-Mannschaftsauswertung TB Gingen Bulls I" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://dvos.de/ligaauswertung.php"></iframe>
+      <div class="cardtitle">Originale DVOS-Spielerauswertung</div>
+      <p class="tiny muted" id="teamStatsHelp">Wähle auf der DVOS-Seite „nach Mannschaft“, dann TB Gingen Bulls I und anschließend „Auswertung starten“. Die offiziellen Tabellen werden direkt hier angezeigt, sofern DVOS die Einbettung zulässt.</p>
+      <div class="statsSource"><a class="btn primary" id="teamStatsOpen" href="https://www.dvos.de/ligaauswertung.php?seite=0" target="_blank" rel="noopener">DVOS-Spielerauswertung öffnen ↗</a></div>
+      <iframe id="teamStatsFrame" title="DVOS-Mannschaftsauswertung TB Gingen Bulls I" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.dvos.de/ligaauswertung.php?seite=0"></iframe>
     </div>
     <div class="tiny muted">Quelle: offizielle DVOS-Spielerauswertung. Die Anzeige hängt davon ab, welche Mannschaftsauswertungen DVOS für die laufende Saison freigibt.</div>
   </section>
@@ -336,12 +336,10 @@ async function load(){
     $('leagueLabel').textContent=meta.leagueName||'DVOS-Liga';
     $('sourceDetails').textContent=(meta.leagueName||'DVOS-Liga')+' · Liga-ID '+(meta.leagueId??'—')+' · Saison '+(meta.season||'—');
     $('sourceLink').href=meta.sourceUrl||'https://dvos.de/liga.php?a_liga=45&p=0';
-    const teamStatsUrl=meta.teamAnalysisUrl||'https://dvos.de/ligaauswertung.php';
+    const teamStatsUrl='https://www.dvos.de/ligaauswertung.php?seite=0';
     $('teamStatsOpen').href=teamStatsUrl;
     $('teamStatsFrame').src=teamStatsUrl;
-    $('teamStatsHelp').textContent=teamStatsUrl.includes('ref1=id_m')
-      ? 'Die DVOS-Mannschaftsauswertung für TB Gingen Bulls I wurde direkt ausgewählt.'
-      : 'DVOS stellt die Mannschaftsauswertung über seine Auswahlseite bereit. Falls die Bulls I nicht vorausgewählt sind, bitte dort unter „nach Mannschaft“ TB Gingen Bulls I auswählen und „Auswertung starten“ drücken.';
+    $('teamStatsHelp').textContent='Die originale DVOS-Spielerauswertung wird direkt eingeblendet. Bitte „nach Mannschaft“ auswählen, TB Gingen Bulls I wählen und auf „Auswertung starten“ tippen. Danach erscheinen die offiziellen Auswertungstabellen.';
     $('updatedText').textContent='DVOS-Stand '+fmtUpdated(meta.updatedAt);
     $('dataUpdated').textContent='Letzte Datenaktualisierung: '+fmtUpdated(meta.updatedAt);
     renderTable();renderLists();renderCup();renderLiveTeamMatch();
