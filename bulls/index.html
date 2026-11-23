@@ -336,10 +336,12 @@ async function load(){
     $('leagueLabel').textContent=meta.leagueName||'DVOS-Liga';
     $('sourceDetails').textContent=(meta.leagueName||'DVOS-Liga')+' · Liga-ID '+(meta.leagueId??'—')+' · Saison '+(meta.season||'—');
     $('sourceLink').href=meta.sourceUrl||'https://dvos.de/liga.php?a_liga=45&p=0';
-    const teamStatsUrl='https://www.dvos.de/ligaauswertung.php?seite=0';
+    const teamStatsUrl=meta.teamAnalysisUrl||'https://www.dvos.de/ligaauswertung.php?seite=0';
     $('teamStatsOpen').href=teamStatsUrl;
     $('teamStatsFrame').src=teamStatsUrl;
-    $('teamStatsHelp').textContent='Die originale DVOS-Spielerauswertung wird direkt eingeblendet. Bitte „nach Mannschaft“ auswählen, TB Gingen Bulls I wählen und auf „Auswertung starten“ tippen. Danach erscheinen die offiziellen Auswertungstabellen.';
+    $('teamStatsHelp').textContent=teamStatsUrl.includes('ref1=id_m')
+      ? 'TB Gingen Bulls I wird automatisch vorausgewählt. Die offizielle DVOS-Auswertung sollte direkt mit unserer Mannschaft starten.'
+      : 'DVOS hat die direkte Mannschaftsauswahl noch nicht geliefert. Bitte „nach Mannschaft“ auswählen, TB Gingen Bulls I wählen und auf „Auswertung starten“ tippen.';
     $('updatedText').textContent='DVOS-Stand '+fmtUpdated(meta.updatedAt);
     $('dataUpdated').textContent='Letzte Datenaktualisierung: '+fmtUpdated(meta.updatedAt);
     renderTable();renderLists();renderCup();renderLiveTeamMatch();
