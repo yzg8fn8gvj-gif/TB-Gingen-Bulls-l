@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 const root = process.cwd();
-const teams = JSON.parse(await readFile(resolve(root, 'bulls-teams/teams.json'), 'utf8'));
+const teams = JSON.parse(await readFile(resolve(root, 'bulls/teams.json'), 'utf8'));
 const configDir = resolve(tmpdir(), 'tb-gingen-bulls-team-configs');
 await mkdir(configDir, { recursive: true });
 const failures = [];
@@ -19,7 +19,7 @@ for (const team of teams) {
     eventDurationMinutes: 120
   };
   const configPath = resolve(configDir, team.id + '.json');
-  const outputDir = resolve(root, 'bulls-teams/data', team.id);
+  const outputDir = resolve(root, 'bulls/data', team.id);
   await mkdir(outputDir, { recursive: true });
   await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
   console.log('\n=== Aktualisiere ' + team.teamName + ' · ' + team.leagueName + ' · DVOS-ID ' + team.leagueId + ' ===');

@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101b32">
-<meta name="description" content="TB Gingen Bulls I – Tabelle, Ergebnisse, Spielplan, Kasse und Strafen">
+<meta name="description" content="TB Gingen Bulls – Spielpläne, Tabellen, Ergebnisse und Mannschaftsauswertungen für alle vier Mannschaften">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>TB Gingen Bulls I</title>
+<title>TB Gingen Bulls – Mannschaften</title>
 <style>
 :root{--navy:#101b32;--navy2:#1c3152;--red:#c93649;--ink:#172033;--muted:#687489;--line:#e6eaf0;--paper:#f3f5f8;--card:#fff;--green:#17865b;--amber:#a9630b;--shadow:0 8px 24px rgba(21,34,57,.075)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom))}a{color:inherit}.app{max-width:760px;margin:0 auto;min-height:100vh}.hero{background:linear-gradient(140deg,#101b32 0%,#1a3154 68%,#273d5f 100%);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 18px 23px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-55px;top:-78px;width:250px;height:250px;border:30px solid rgba(255,255,255,.045);border-radius:50%}.brandrow{display:flex;align-items:center;gap:12px;position:relative;z-index:1}.crest{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#e34a58,#a92636);display:grid;place-items:center;font-weight:950;letter-spacing:-1px;font-size:17px;box-shadow:0 7px 18px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.25)}.brand{font-size:19px;font-weight:850;letter-spacing:-.35px}.subbrand{font-size:12px;color:#c4d0e2;margin-top:1px}.season{margin-left:auto;align-self:flex-start;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);border-radius:999px;padding:5px 9px;font-size:11px;color:#edf2f9;white-space:nowrap}.hero h1{font-size:27px;letter-spacing:-.75px;line-height:1.1;margin:23px 0 7px;position:relative;z-index:1}.hero p{font-size:13px;color:#ced8e8;margin:0;position:relative;z-index:1}.heroInfo{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px;position:relative;z-index:1}.heroInfo span{font-size:11px;color:#e1e8f3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:999px}
@@ -87,12 +87,14 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
 .kasseIntro{font-size:12px;color:#bac5d3;line-height:1.5}
 .kasseAction{display:flex;flex-wrap:wrap;gap:8px}
 @media(max-width:420px){.kasseFrame{height:760px;min-height:560px}}
+.teamSwitch{position:relative;z-index:2;display:flex;align-items:center;gap:9px;margin-top:13px;max-width:100%;flex-wrap:wrap}.teamSwitch span{font-size:11px;font-weight:750;color:#c8d3e2}.teamSwitch select{appearance:none;background:#263241;border:1px solid #526174;color:#fff;border-radius:11px;padding:9px 30px 9px 12px;font-size:13px;font-weight:850;min-width:180px;max-width:100%}.teamSwitch select:focus{outline:2px solid rgba(145,227,76,.65);outline-offset:2px}.screen[hidden],.navlink[hidden],.card[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="hero">
-  <div class="brandrow"><div class="crest">TB</div><div><div class="brand">TB Gingen Bulls</div><div class="subbrand">STEEL-DARTS · MANNSCHAFT I</div></div><div class="season" id="seasonLabel">2026 / 27</div></div>
+  <div class="brandrow"><div class="crest">TB</div><div><div class="brand">TB Gingen Bulls</div><div class="subbrand" id="teamSubtitle">STEEL-DARTS · MANNSCHAFT I</div></div><div class="season" id="seasonLabel">2026 / 27</div></div>
+  <label class="teamSwitch"><span>Mannschaft auswählen</span><select id="teamPicker"><option value="bulls-i">Mannschaft I</option><option value="bulls-ii">Mannschaft II</option><option value="bulls-iii">Mannschaft III</option><option value="bulls-iv">Mannschaft IV</option></select></label>
   <h1>Auf geht’s, Bulls!<br>Alle Spiele im Blick.</h1>
   <p>Tabelle, Ergebnisse und Spielplan – direkt aus der DVOS-Liga.</p>
   <div class="heroInfo"><span id="leagueLabel">Bezirksoberliga A</span><span>DVOS · 2026/2027</span><span>🎯 STEEL-DART</span></div>
@@ -100,52 +102,52 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
 <div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Daten werden geladen …</span><span class="updated" id="updatedText">—</span></div>
 <main>
   <section class="screen active" id="start">
-    <div class="sectionhead"><div><div class="eyebrow">Dein Überblick</div><h2>Bulls I auf einen Blick</h2></div><button class="btn small" id="refreshBtn">↻ Daten neu laden</button></div>
+    <div class="sectionhead"><div><div class="eyebrow">Dein Überblick</div><h2 id="homeHeading">Bulls I auf einen Blick</h2></div><button class="btn small" id="refreshBtn">↻ Daten neu laden</button></div>
     <div class="grid2" style="margin-bottom:12px">
       <div class="metric"><div class="label">Tabellenplatz</div><div class="value" id="homeRank">—</div><div class="note" id="homeRankNote">Wird geladen</div></div>
       <div class="metric"><div class="label">Punkte</div><div class="value" id="homePoints">—</div><div class="note" id="homePointsNote">Aktuelle Tabelle</div></div>
     </div>
     <div class="card"><div class="cardtitle">Letztes Spiel</div><div id="lastMatch"><div class="empty">Spielinformationen werden geladen.</div></div></div>
     <div class="card"><div class="cardtitle">Nächstes Spiel</div><div id="nextMatch"><div class="empty">Spielplan wird geladen.</div></div></div>
-    <div class="card"><div class="cardtitle">Mannschaftskasse & Strafen</div><p class="tiny muted">Eure aktuelle Kasse, offene Strafen und die Wall of Shame findest du jetzt direkt in der Bulls-App.</p><div class="actions"><a class="btn primary" href="#kasse">💶 Kasse & Strafen öffnen</a></div></div>
-    <div class="card"><div class="cardtitle">Dein Bulls-Kalender</div><p class="tiny muted">Einmal abonnieren – der Feed wird automatisch etwa alle 15 Minuten mit dem DVOS-Spielplan abgeglichen. Spielverlegungen und neue Ergebnisse werden übernommen.</p><div class="actions"><a class="btn primary" id="calendarSubscribeHome" href="#" aria-disabled="true">🗓️ Kalender abonnieren</a><a class="btn" id="calendarDirectHome" href="./calendar.ics">ICS öffnen</a></div></div>
+    <div class="card" id="kasseHomeCard"><div class="cardtitle">Mannschaftskasse & Strafen</div><p class="tiny muted">Eure aktuelle Kasse, offene Strafen und die Wall of Shame findest du jetzt direkt in der Bulls-App.</p><div class="actions"><a class="btn primary" href="#kasse">💶 Kasse & Strafen öffnen</a></div></div>
+    <div class="card"><div class="cardtitle">Dein Bulls-Kalender</div><p class="tiny muted">Einmal abonnieren – der Feed wird automatisch alle 5 Minuten mit dem DVOS-Spielplan abgeglichen. Spielverlegungen und neue Ergebnisse werden übernommen.</p><div class="actions"><a class="btn primary" id="calendarSubscribeHome" href="#" aria-disabled="true">🗓️ Kalender abonnieren</a><a class="btn" id="calendarDirectHome" href="./calendar.ics">ICS öffnen</a></div></div>
     <div class="notice"><strong>Direkt aus der Quelle</strong>Die App zeigt offizielle Tabellen- und Spielplandaten. Die DVOS-Seite veröffentlicht für diese Ansicht keine Spielbeginn-Uhrzeit; Spiele werden daher im Kalender als Ganztagstermine angelegt.</div>
   </section>
 
   <section class="screen" id="tabelle">
-    <div class="sectionhead"><div><div class="eyebrow">Staffelübersicht</div><h2>Die Tabelle</h2></div><span class="pill">BOL A</span></div>
+    <div class="sectionhead"><div><div class="eyebrow">Staffelübersicht</div><h2>Die Tabelle</h2></div><span class="pill" id="tableLeaguePill">BOL A</span></div>
     <div id="tableContent"><div class="empty">Tabelle wird geladen.</div></div>
   </section>
 
   <section class="screen" id="ergebnisse">
     <div class="sectionhead"><div><div class="eyebrow">Abgeschlossene Begegnungen</div><h2>Ergebnisse</h2></div></div>
-    <div class="filterbar"><button class="filter selected" data-filter="all" data-view="results">Alle Ligaspiele</button><button class="filter" data-filter="team" data-view="results">Nur Bulls I</button></div>
+    <div class="filterbar"><button class="filter selected" data-filter="all" data-view="results">Alle Ligaspiele</button><button class="filter" id="resultsTeamFilter" data-filter="team" data-view="results">Nur Bulls I</button></div>
     <div id="resultsContent"><div class="empty">Ergebnisse werden geladen.</div></div>
   </section>
 
   <section class="screen" id="spielplan">
     <div class="sectionhead"><div><div class="eyebrow">Alle Begegnungen</div><h2>Spielplan</h2></div></div>
     <div class="card"><div class="cardtitle">Kalender-Abo</div><p class="tiny muted">Der Abo-Link bleibt dauerhaft gleich. Die Daten im Feed werden automatisch etwa alle 15 Minuten neu von der DVOS-Seite gelesen.</p><div class="actions"><a class="btn primary" id="calendarSubscribeBtn" href="#">🗓️ Kalender abonnieren</a><a class="btn" id="calendarDirect" href="./calendar.ics">ICS-Datei ansehen</a></div><div class="tiny muted" style="margin-top:8px">Ohne veröffentlichte Uhrzeit werden die Spiele als Ganztagstermine eingetragen.</div></div>
-    <div class="filterbar"><button class="filter selected" data-filter="team" data-view="schedule">Nur Bulls I</button><button class="filter" data-filter="all" data-view="schedule">Alle Ligaspiele</button></div>
+    <div class="filterbar"><button class="filter selected" id="scheduleTeamFilter" data-filter="team" data-view="schedule">Nur Bulls I</button><button class="filter" data-filter="all" data-view="schedule">Alle Ligaspiele</button></div>
     <div class="filterbar"><button class="filter selected" data-round="all">Alle Spieltage</button><button class="filter" data-round="hin">Hinrunde</button><button class="filter" data-round="rueck">Rückrunde</button></div>
     <div id="returnRoundNote" class="tiny muted" style="margin:0 0 10px"></div>
     <div id="scheduleContent"><div class="empty">Spielplan wird geladen.</div></div>
   </section>
 
   <section class="screen" id="pokal">
-    <div class="sectionhead"><div><div class="eyebrow">K.-o.-Wettbewerb</div><h2>DVOS-Pokal</h2></div><span class="pill">🏆 Bulls I</span></div>
-    <div class="card"><div class="cardtitle">Nur die Pokalspiele der Bulls I</div><p class="tiny muted">Die jeweils ausgeloste Runde wird automatisch von DVOS übernommen. Neue Paarungen und Spielverlegungen erscheinen hier und im bestehenden Kalender-Abo.</p></div>
+    <div class="sectionhead"><div><div class="eyebrow">K.-o.-Wettbewerb</div><h2>DVOS-Pokal</h2></div><span class="pill" id="pokalTeamPill">🏆 Bulls I</span></div>
+    <div class="card"><div class="cardtitle" id="pokalCardTitle">Nur die Pokalspiele der Bulls I</div><p class="tiny muted">Die jeweils ausgeloste Runde wird automatisch von DVOS übernommen. Neue Paarungen und Spielverlegungen erscheinen hier und im bestehenden Kalender-Abo.</p></div>
     <div id="cupContent"><div class="empty">Pokalspiele werden geladen.</div></div>
     <div class="tiny muted" style="padding:4px 2px">Quelle: <a href="https://dvos.de/pokal.php" target="_blank" rel="noopener">DVOS-Pokal ↗</a></div>
   </section>
 
   <section class="screen" id="mannschaftstabelle">
-    <div class="sectionhead"><div><div class="eyebrow">Spielerstatistik · DVOS</div><h2>Mannschaftstabelle</h2></div><span class="pill">🎯 Bulls I</span></div>
+    <div class="sectionhead"><div><div class="eyebrow">Spielerstatistik · DVOS</div><h2>Mannschaftstabelle</h2></div><span class="pill" id="teamStatsPill">🎯 Bulls I</span></div>
     <div class="card">
-      <div class="cardtitle">Originale DVOS-Spielerauswertung</div>
+      <div class="cardtitle" id="teamStatsTitle">Originale DVOS-Spielerauswertung</div>
       <p class="tiny muted" id="teamStatsHelp">Wähle auf der DVOS-Seite „nach Mannschaft“, dann TB Gingen Bulls I und anschließend „Auswertung starten“. Die offiziellen Tabellen werden direkt hier angezeigt, sofern DVOS die Einbettung zulässt.</p>
-      <div class="statsSource"><a class="btn primary" id="teamStatsOpen" href="https://www.dvos.de/ligaauswertung.php?seite=0" target="_blank" rel="noopener">Auswertung in neuem Fenster ↗</a></div>
-      <iframe id="teamStatsFrame" title="DVOS-Mannschaftsauswertung TB Gingen Bulls I" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.dvos.de/ligaauswertung.php?seite=0"></iframe>
+      <div class="statsSource"><a class="btn primary" id="teamStatsOpen" href="#" target="_blank" rel="noopener">Auswertung in neuem Fenster ↗</a></div>
+      <iframe id="teamStatsFrame" title="DVOS-Mannschaftsauswertung" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank"></iframe>
     </div>
     <div class="tiny muted">Quelle: offizielle DVOS-Spielerauswertung. Die Anzeige hängt davon ab, welche Mannschaftsauswertungen DVOS für die laufende Saison freigibt.</div>
   </section>
@@ -159,7 +161,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
     </div>
     <div class="card">
       <div class="cardtitle">Aktuelle Live-Spielberichte</div>
-      <p class="tiny muted">Hier erscheint die offizielle DVOS-Live-Übersicht. Sobald ein Spiel der Bulls I vom Scorer live übertragen wird, kannst du es dort auswählen und den Spielbericht verfolgen.</p>
+      <p class="tiny muted" id="liveHelp">Hier erscheint die offizielle DVOS-Live-Übersicht. Sobald ein Spiel der ausgewählten Mannschaft vom Scorer live übertragen wird, kannst du es dort auswählen und den Spielbericht verfolgen.</p>
       <iframe id="liveReportFrame" title="DVOS Live-Spielbericht" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.dvos.de/sb_live.php"></iframe>
       <p class="tiny muted" style="margin-top:9px">Falls DVOS die Einbettung im Browser blockiert, öffne die Live-Übersicht über den Button oben.</p>
     </div>
@@ -188,7 +190,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
     <div class="card"><div class="cardtitle">Neue Saison</div><p class="tiny muted">Die Liga-Kennung steht zentral in der Datei <b>bulls/config.json</b>. Für eine neue Saison werden dort Liga-ID, Ligabezeichnung und Saison angepasst. Die App-Adresse und der Kalender-Abo-Link bleiben bestehen.</p></div>
     <div class="notice"><strong>Hinweis</strong>Dies ist eine private Begleit-App und keine offizielle App des DVOS oder des TB Gingen 1870 e.V.</div>
   </section>
-  <div class="footer">TB Gingen Bulls I · Datenquelle: DVOS · Private Begleit-App</div>
+  <div class="footer" id="appFooter">TB Gingen Bulls · Datenquelle: DVOS · Testversion</div>
 </main>
 </div>
 <nav class="bottomnav" aria-label="Hauptnavigation"><div class="navinner">
@@ -199,13 +201,15 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
   <a class="navlink" href="#spielplan"><span class="ico">🗓️</span><span>Spielplan</span></a>
   <a class="navlink navlong" href="#mannschaftstabelle"><span class="ico">🎯</span><span>Mannschaftstabelle</span></a>
   <a class="navlink" href="#livebericht"><span class="ico">🔴</span><span>Live-Spielbericht</span></a>
-  <a class="navlink" href="#kasse"><span class="ico">💶</span><span>Kasse & Strafen</span></a>
+  <a class="navlink" id="kasseNav" href="#kasse"><span class="ico">💶</span><span>Kasse & Strafen</span></a>
   <a class="navlink" href="#info"><span class="ico">ⓘ</span><span>Info</span></a>
 </div></nav>
 <script>
 (() => {
 'use strict';
-const TEAM='TB Gingen Bulls I';
+let TEAM='';
+let activeTeam=null;
+let teams=[];
 const $=id=>document.getElementById(id);
 let data=null;
 let filters={results:'all',schedule:'team',round:'all'};
@@ -230,14 +234,20 @@ function matchCard(m){
   const state=m.inferred?'<span class="pill">Termin offen</span>':(done?'<span class="pill done">Beendet</span>':'<span class="pill upcoming">Anstehend</span>');
   const report=m.reportUrl?'<div class="actions"><a class="btn small red" target="_blank" rel="noopener" href="'+esc(m.reportUrl)+'">Spielbericht öffnen ↗</a></div>':'';
   const round=m.round?' · '+(Number(m.round)>9?'Rückrunde':'Hinrunde')+' · Spieltag '+esc(m.round):'';
-  const ours=isOur(m)?' <span class="pill">BULLS I</span>':'';
+  const ours=isOur(m)?' <span class="pill">'+esc(activeTeam.tag)+'</span>':'';
   const meta=m.inferred?' · Paarung aus Hinrunde abgeleitet · Termin noch offen':(m.date?' · Uhrzeit nicht veröffentlicht':' · Termin offen');
   return '<div class="item"><div class="itemtop"><div class="itemteams">'+homeName+'<br>'+awayName+'</div><div style="text-align:right"><div class="itemresult">'+score+'</div>'+state+'</div></div><div class="itemmeta">'+esc(fmtDate(m.date))+round+ours+meta+'</div>'+report+'</div>';
 }
 function renderTable(){
   const rows=(data.standings||[]).slice().sort((a,b)=>(a.rank??999)-(b.rank??999));
   if(!rows.length){$('tableContent').innerHTML=missing('Keine Tabelle verfügbar','Die letzte DVOS-Antwort enthielt keine auswertbare Tabelle.');return;}
-  $('tableContent').innerHTML='<div class="tablewrap"><table class="table"><thead><tr><th>Pl.</th><th>Mannschaft</th><th>Pkt.</th><th>Sp.</th><th>S</th><th>U</th><th>N</th><th>Sets</th></tr></thead><tbody>'+rows.map((r,i)=>{const zone=i===rows.length-1?' relegation':(i<2?' promotion':'');return '<tr class="'+(r.team===TEAM?'ourteam':'')+zone+'"><td class="rank">'+esc(r.rank??i+1)+'</td><td class="clubname">'+esc(r.team)+(r.team===TEAM?' ◂':'')+'</td><td><b class="pointsValue">'+esc(r.points??'—')+'</b></td><td>'+esc(r.played??'—')+'</td><td>'+esc(r.wins??'—')+'</td><td>'+esc(r.draws??'—')+'</td><td>'+esc(r.losses??'—')+'</td><td>'+esc(r.setsFor??'—')+':'+esc(r.setsAgainst??'—')+'</td></tr>';}).join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · <span class="zoneLegend"><i class="zoneGreen"></i>Aufstiegsplätze</span> · <span class="zoneLegend"><i class="zoneRed"></i>Abstiegsplatz</span> · Bulls I hervorgehoben</p>';
+  const promotionSlots=Number(activeTeam.promotionSlots)||0;
+  const relegationSlots=Number(activeTeam.relegationSlots)||0;
+  $('tableContent').innerHTML='<div class="tablewrap"><table class="table"><thead><tr><th>Pl.</th><th>Mannschaft</th><th>Pkt.</th><th>Sp.</th><th>S</th><th>U</th><th>N</th><th>Sets</th></tr></thead><tbody>'+rows.map((r,i)=>{
+    const isOwn=r.team===TEAM;
+    const zone=i<promotionSlots?' promotion':(relegationSlots>0&&i>=rows.length-relegationSlots?' relegation':'');
+    return '<tr class="'+(isOwn?'ourteam':'')+zone+'"><td class="rank">'+esc(r.rank??i+1)+'</td><td class="clubname">'+esc(r.team)+(isOwn?' ◂':'')+'</td><td><b class="pointsValue">'+esc(r.points??'—')+'</b></td><td>'+esc(r.played??'—')+'</td><td>'+esc(r.wins??'—')+'</td><td>'+esc(r.draws??'—')+'</td><td>'+esc(r.losses??'—')+'</td><td>'+esc(r.setsFor??'—')+':'+esc(r.setsAgainst??'—')+'</td></tr>';
+  }).join('')+'</tbody></table></div><p class="tiny muted">'+rows.length+' Mannschaften · <span class="zoneLegend"><i class="zoneGreen"></i>Aufstiegsplätze</span>'+(relegationSlots>0?' · <span class="zoneLegend"><i class="zoneRed"></i>Abstiegsplatz</span>':'')+' · '+esc(activeTeam.shortName)+' hervorgehoben<br>'+esc(activeTeam.ruleText)+' · '+esc(activeTeam.seasonRuleNote)+'</p>';
   const ours=rows.find(r=>r.team===TEAM);
   if(ours){$('homeRank').textContent=ours.rank?ours.rank+'.':'—';$('homeRankNote').textContent='von '+rows.length+' Teams';$('homePoints').textContent=ours.points??'—';$('homePointsNote').textContent=(ours.played??'—')+' Spiele';}
 }
@@ -308,7 +318,7 @@ function renderLiveTeamMatch(){
 }
 function renderCup(){
   const games=sorted(data.cupMatches||[]).filter(isOur);
-  if(!games.length){$('cupContent').innerHTML=missing('Noch keine Pokalpartie der Bulls I','Sobald DVOS die nächste Runde auslost und die Begegnung der Bulls I veröffentlicht, erscheint sie automatisch hier.');return;}
+  if(!games.length){$('cupContent').innerHTML=missing('Noch keine Pokalpartie der '+activeTeam.shortName,'Sobald DVOS die nächste Runde auslost und die Begegnung der '+activeTeam.shortName+' veröffentlicht, erscheint sie automatisch hier.');return;}
   $('cupContent').innerHTML='<div class="card"><div class="list">'+games.map(m=>{
     const done=hasScore(m);
     const homeWon=done&&Number(m.homeScore)>Number(m.awayScore);
@@ -318,11 +328,12 @@ function renderCup(){
     const awayName='<span class="'+(awayWon?'match-winner':'muted')+'">'+esc(m.away)+'</span>';
     const state=done?'<span class="pill done">Beendet</span>':'<span class="pill upcoming">Anstehend</span>';
     const round=m.round?' · '+(String(m.round).match(/^\\d+$/)?'Runde '+m.round:m.round):'';
-    return '<div class="item"><div class="itemtop"><div class="itemteams">'+homeName+'<br>'+awayName+'</div><div style="text-align:right"><div class="itemresult">'+score+'</div>'+state+'</div></div><div class="itemmeta">🏆 Pokal'+esc(round)+' · '+esc(fmtDate(m.date))+' <span class="pill">BULLS I</span></div></div>';
+    return '<div class="item"><div class="itemtop"><div class="itemteams">'+homeName+'<br>'+awayName+'</div><div style="text-align:right"><div class="itemresult">'+score+'</div>'+state+'</div></div><div class="itemmeta">🏆 Pokal'+esc(round)+' · '+esc(fmtDate(m.date))+' <span class="pill">'+esc(activeTeam.tag)+'</span></div></div>';
   }).join('')+'</div></div>';
 }
 function setCalendarLinks(){
-  const httpsUrl=new URL('./calendar.ics',location.href).href;
+  if(!activeTeam)return;
+  const httpsUrl=new URL('./data/'+activeTeam.id+'/calendar.ics',location.href).href;
   const webcalUrl=httpsUrl.replace(/^https:/,'webcal:');
   ['calendarSubscribeBtn','calendarSubscribeHome'].forEach(id=>{const a=$(id);a.href=webcalUrl;a.removeAttribute('aria-disabled');});
   ['calendarDirect','calendarDirectHome'].forEach(id=>{const a=$(id);a.href=httpsUrl;});
@@ -336,22 +347,26 @@ async function load({manual=false}={}){
     setStatus('warn','Lade veröffentlichte DVOS-Daten …');
   }
   try{
-    const res=await fetch('./data.json?refresh='+Date.now(),{cache:'no-store'});
+    const requestedTeamId=activeTeam.id;
+    const res=await fetch('./data/'+requestedTeamId+'/data.json?refresh='+Date.now(),{cache:'no-store'});
     if(!res.ok)throw new Error('HTTP '+res.status);
-    data=await res.json();
+    const nextData=await res.json();
+    if(!activeTeam||activeTeam.id!==requestedTeamId)return;
+    data=nextData;
     const meta=data.meta||{};
     $('seasonLabel').textContent=String(meta.season||'2026/2027').replace('/',' / ');
     $('leagueLabel').textContent=meta.leagueName||'DVOS-Liga';
     $('sourceDetails').textContent=(meta.leagueName||'DVOS-Liga')+' · Liga-ID '+(meta.leagueId??'—')+' · Saison '+(meta.season||'—');
     $('sourceLink').href=meta.sourceUrl||'https://dvos.de/liga.php?a_liga=45&p=0';
-    const teamStatsUrl=meta.teamAnalysisUrl||'./team-analysis.html';
+    const teamStatsUrl='./data/'+activeTeam.id+'/team-analysis.html';
     $('teamStatsOpen').href=teamStatsUrl;
     // Re-open the generated DVOS analysis page on every refresh tap,
     // with a unique URL so the browser cannot reuse an older iframe response.
     $('teamStatsFrame').src=teamStatsUrl+'?refresh='+Date.now();
+    $('teamStatsFrame').title='DVOS-Mannschaftsauswertung '+TEAM;
     $('teamStatsHelp').textContent=meta.teamAnalysisVerified
-      ? 'Die originale DVOS-Spielerauswertung für TB Gingen Bulls I wird direkt angezeigt. Die Spielerdaten werden mit dem automatischen DVOS-Abruf aktualisiert.'
-      : 'Die DVOS-Auswertung konnte beim letzten Abruf nicht bestätigt werden. Bitte die App-Daten erneut laden oder die DVOS-Seite direkt öffnen.';
+      ? 'Die originale DVOS-Spielerauswertung für '+TEAM+' wird direkt angezeigt.'
+      : 'Die DVOS-Auswertung für '+TEAM+' konnte beim letzten Abruf nicht bestätigt werden. Bitte später erneut laden.';
     $('updatedText').textContent='DVOS-Stand '+fmtUpdated(meta.updatedAt);
     $('dataUpdated').textContent='Letzte Datenaktualisierung: '+fmtUpdated(meta.updatedAt);
     renderTable();renderLists();renderCup();renderLiveTeamMatch();
@@ -376,6 +391,7 @@ async function load({manual=false}={}){
 function route(){
   let id=(location.hash||'#start').slice(1);
   if(!document.getElementById(id))id='start';
+  if(id==='kasse'&&activeTeam&&!activeTeam.hasCash)id='start';
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
   document.querySelectorAll('.navlink').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
   window.scrollTo(0,0);
@@ -393,10 +409,58 @@ document.querySelectorAll('[data-round]').forEach(btn=>btn.addEventListener('cli
   document.querySelectorAll('[data-round]').forEach(b=>b.classList.toggle('selected',b===btn));
   if(data)renderLists();
 }));
+function applyTeamUi(){
+  TEAM=activeTeam.teamName;
+  $('teamPicker').value=activeTeam.id;
+  $('teamSubtitle').textContent='STEEL-DARTS · '+activeTeam.label.toUpperCase();
+  $('homeHeading').textContent=activeTeam.shortName+' auf einen Blick';
+  $('resultsTeamFilter').textContent='Nur '+activeTeam.shortName;
+  $('scheduleTeamFilter').textContent='Nur '+activeTeam.shortName;
+  $('tableLeaguePill').textContent=activeTeam.leagueShort;
+  $('pokalTeamPill').textContent='🏆 '+activeTeam.shortName;
+  $('pokalCardTitle').textContent='Nur die Pokalspiele der '+activeTeam.shortName;
+  $('teamStatsPill').textContent='🎯 '+activeTeam.shortName;
+  $('teamStatsTitle').textContent='Originale DVOS-Spielerauswertung · '+activeTeam.shortName;
+  $('liveHelp').textContent='Hier erscheint die offizielle DVOS-Live-Übersicht. Sobald ein Spiel der '+TEAM+' vom Scorer live übertragen wird, kannst du es dort auswählen und verfolgen.';
+  $('kasseNav').hidden=!activeTeam.hasCash;
+  $('kasseHomeCard').hidden=!activeTeam.hasCash;
+  $('kasse').hidden=!activeTeam.hasCash;
+  $('appFooter').textContent='TB Gingen Bulls · '+activeTeam.shortName+' · Datenquelle: DVOS · Testversion';
+}
+async function initialize(){
+  try{
+    const response=await fetch('./teams.json?config='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw new Error('teams.json HTTP '+response.status);
+    teams=await response.json();
+    let savedTeamId='bulls-i';
+    try{savedTeamId=localStorage.getItem('tbGingenBullsActiveTeam')||savedTeamId;}catch{}
+    activeTeam=teams.find(t=>t.id===savedTeamId)||teams[0];
+    $('teamPicker').innerHTML=teams.map(t=>'<option value="'+esc(t.id)+'">'+esc(t.label)+'</option>').join('');
+    applyTeamUi();route();setCalendarLinks();
+    await load();
+  }catch(error){
+    setStatus('bad','Mannschaftsauswahl konnte nicht geladen werden');
+    $('tableContent').innerHTML=missing('Mannschaften nicht verfügbar','Die Mannschaftsauswahl konnte nicht geladen werden. Bitte später erneut öffnen.');
+  }
+}
+$('teamPicker').addEventListener('change',async()=>{
+  const next=teams.find(t=>t.id===$('teamPicker').value);
+  if(!next||next.id===activeTeam?.id)return;
+  activeTeam=next;
+  filters={results:'all',schedule:'team',round:'all'};
+  data=null;
+  try{localStorage.setItem('tbGingenBullsActiveTeam',activeTeam.id);}catch{}
+  document.querySelectorAll('[data-view="results"]').forEach(b=>b.classList.toggle('selected',b.dataset.filter==='all'));
+  document.querySelectorAll('[data-view="schedule"]').forEach(b=>b.classList.toggle('selected',b.dataset.filter==='team'));
+  document.querySelectorAll('[data-round]').forEach(b=>b.classList.toggle('selected',b.dataset.round==='all'));
+  if(location.hash==='#kasse'&&!activeTeam.hasCash)location.hash='#start';
+  applyTeamUi();route();setCalendarLinks();
+  await load();
+});
 $('refreshBtn').addEventListener('click',()=>load({manual:true}));
 $('settingsRefresh').addEventListener('click',()=>load({manual:true}));
-route();setCalendarLinks();load();
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+initialize();
 })();
 </script>
 </body>

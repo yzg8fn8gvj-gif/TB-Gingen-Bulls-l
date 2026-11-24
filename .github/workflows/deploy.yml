@@ -1,4 +1,4 @@
-name: Publish TB Gingen Bulls I
+name: Publish TB Gingen Bulls
 on:
   push:
     branches: [main]
@@ -27,9 +27,8 @@ jobs:
           node-version: "20"
       - name: Refresh TB Gingen Bulls I data and calendar from DVOS
         run: node scripts/update-bulls-calendar.mjs
-      - name: Refresh separate multi-team test app data
+      - name: Refresh all four TB Gingen Bulls teams and calendars from DVOS
         run: node scripts/update-bulls-teams.mjs
-        continue-on-error: true
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site files
