@@ -2,11 +2,6 @@ name: Publish TB Gingen Bulls
 on:
   push:
     branches: [main]
-  schedule:
-    # Run continuously every five minutes, offset from the top of the hour.
-    # Touching this schedule also re-registers it with GitHub Actions.
-    - cron: "3-58/5 * * * *"
-  workflow_dispatch:
 permissions:
   contents: read
   pages: write
@@ -29,7 +24,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Refresh all four TB Gingen Bulls teams and calendars from DVOS
+      - name: Refresh all four TB Gingen Bulls teams and calendars from DVOS (temporarily paused)
+        if: false
         run: node scripts/update-bulls-teams.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
