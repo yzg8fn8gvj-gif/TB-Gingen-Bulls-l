@@ -102,7 +102,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
 <div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Daten werden geladen …</span><span class="updated" id="updatedText">—</span></div>
 <main>
   <section class="screen active" id="start">
-    <div class="sectionhead"><div><div class="eyebrow">Dein Überblick</div><h2 id="homeHeading">Bulls I auf einen Blick</h2></div><button class="btn small" id="refreshBtn">↻ DVOS jetzt aktualisieren</button></div>
+    <div class="sectionhead"><div><div class="eyebrow">Dein Überblick</div><h2 id="homeHeading">Bulls I auf einen Blick</h2></div></div>
     <div class="grid2" style="margin-bottom:12px">
       <div class="metric"><div class="label">Tabellenplatz</div><div class="value" id="homeRank">—</div><div class="note" id="homeRankNote">Wird geladen</div></div>
       <div class="metric"><div class="label">Punkte</div><div class="value" id="homePoints">—</div><div class="note" id="homePointsNote">Aktuelle Tabelle</div></div>
@@ -186,7 +186,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
   <section class="screen" id="info">
     <div class="sectionhead"><div><div class="eyebrow">Verbindung & Quelle</div><h2>App-Informationen</h2></div></div>
     <div class="card"><div class="cardtitle">Offizielle DVOS-Liga</div><div class="tiny muted" id="sourceDetails">Bezirksoberliga A · Liga-ID 45 · Saison 2026/2027</div><div class="actions"><a class="btn primary" id="sourceLink" target="_blank" rel="noopener" href="https://dvos.de/liga.php?a_liga=45&p=0">DVOS-Ligaseite öffnen ↗</a></div></div>
-    <div class="card"><div class="cardtitle">Automatische & manuelle Aktualisierung</div><p class="tiny muted">Der Server versucht weiterhin, alle vier Mannschaften automatisch im 5-Minuten-Takt bei DVOS abzurufen. Zusätzlich kannst du hier einen manuellen Abruf starten. Aus Sicherheitsgründen öffnet sich dafür GitHub: Dort musst du angemeldet sein und einmal auf „Run workflow“ tippen. Sobald der Abruf abgeschlossen und veröffentlicht ist, übernimmt die App die neuen Daten automatisch. Ein GitHub-Schlüssel wird dabei nicht in der App gespeichert.</p><div class="tiny muted" id="dataUpdated">Letzter erfolgreicher DVOS-Abruf: —</div><div class="actions"><button class="btn primary" id="settingsRefresh">↻ DVOS jetzt aktualisieren</button></div></div>
+    <div class="card"><div class="cardtitle">Automatische Aktualisierung</div><p class="tiny muted">Der Server ruft die Daten aller vier Mannschaften automatisch etwa alle fünf Minuten bei DVOS ab. Die App prüft regelmäßig auf neue veröffentlichte Daten und übernimmt sie selbstständig. Du musst nichts drücken.</p><div class="tiny muted" id="dataUpdated">Letzter veröffentlichter Datenstand: —</div></div>
     <div class="card"><div class="cardtitle">Neue Saison</div><p class="tiny muted">Die Liga-Kennung steht zentral in der Datei <b>bulls/config.json</b>. Für eine neue Saison werden dort Liga-ID, Ligabezeichnung und Saison angepasst. Die App-Adresse und der Kalender-Abo-Link bleiben bestehen.</p></div>
     <div class="notice"><strong>Hinweis</strong>Dies ist eine private Begleit-App und keine offizielle App des DVOS oder des TB Gingen 1870 e.V.</div>
   </section>
@@ -336,41 +336,6 @@ function renderCup(){
     return '<div class="item"><div class="itemtop"><div class="itemteams">'+homeName+'<br>'+awayName+'</div><div style="text-align:right"><div class="itemresult">'+score+'</div>'+state+'</div></div><div class="itemmeta">🏆 Pokal'+esc(round)+' · '+esc(fmtDate(m.date))+' <span class="pill">'+esc(activeTeam.tag)+'</span></div></div>';
   }).join('')+'</div></div>';
 }
-const MANUAL_REFRESH_URL='https://github.com/yzg8fn8gvj-gif/TB-Gingen-Bulls-l/actions/workflows/deploy.yml';
-let manualRefreshWait=null;
-function startManualRefresh(){
-  if(!activeTeam)return;
-  const baseline=Date.parse(data?.meta?.updatedAt||'')||0;
-  manualRefreshWait={baseline,startedAt:Date.now(),timer:null};
-  setStatus('warn','GitHub geöffnet – dort „Run workflow“ starten.');
-  manualRefreshWait.timer=window.setTimeout(pollManualRefresh,15000);
-  const opened=window.open(MANUAL_REFRESH_URL,'_blank');
-  if(!opened){
-    $('statusText').innerHTML='GitHub konnte nicht automatisch geöffnet werden. <a href="'+MANUAL_REFRESH_URL+'" target="_blank" rel="noopener">GitHub-Workflow öffnen</a> und dort „Run workflow“ tippen.';
-    return;
-  }
-  try{opened.opener=null;}catch{}
-}
-async function pollManualRefresh(){
-  const state=manualRefreshWait;
-  if(!state||document.hidden)return;
-  await load({force:true});
-  if(manualRefreshWait!==state)return;
-  const updated=Date.parse(data?.meta?.updatedAt||'')||0;
-  if(updated>state.baseline){
-    manualRefreshWait=null;
-    if(state.timer)window.clearTimeout(state.timer);
-    setStatus('good','Manueller DVOS-Abruf abgeschlossen – neue Daten geladen');
-    return;
-  }
-  if(Date.now()-state.startedAt>=10*60*1000){
-    manualRefreshWait=null;
-    if(state.timer)window.clearTimeout(state.timer);
-    setStatus('warn','Noch keine neuen Daten erkannt. Prüfe bitte in GitHub, ob der Workflow abgeschlossen ist.');
-    return;
-  }
-  state.timer=window.setTimeout(pollManualRefresh,15000);
-}
 function setCalendarLinks(){
   if(!activeTeam)return;
   const httpsUrl=new URL('./data/'+activeTeam.id+'/calendar.ics',location.href).href;
@@ -439,7 +404,7 @@ async function load({manual=false,force=false}={}){
 
     const updatedAt=Date.parse(meta.updatedAt||'');
     const ageMinutes=Number.isFinite(updatedAt)?Math.max(0,(Date.now()-updatedAt)/60000):Infinity;
-    setStatus(ageMinutes<=12?'good':'warn',ageMinutes<=12?'DVOS-Stand aktuell':'Letzter DVOS-Abruf liegt zurück');
+    setStatus('good','Aktuell veröffentlichter Datenstand geladen');
     lastSuccessfulLoadAt=Date.now();
   }catch(err){
     if(!isCurrent())return;
@@ -480,9 +445,9 @@ function route(){
 }
 document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click',()=>setTimeout(route,20)));
 window.addEventListener('hashchange',route);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(manualRefreshWait)pollManualRefresh();else load();}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)load({force:true});});
 window.addEventListener('online',()=>load({force:true}));
-window.setInterval(()=>{if(!document.hidden&&!manualRefreshWait)load();},60000);
+window.setInterval(()=>{if(!document.hidden)load({force:true});},60000);
 document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
   const view=btn.dataset.view;filters[view]=btn.dataset.filter;
   document.querySelectorAll('[data-view="'+view+'"]').forEach(b=>b.classList.toggle('selected',b===btn));
@@ -541,8 +506,7 @@ $('teamPicker').addEventListener('change',async()=>{
   applyTeamUi();route();setCalendarLinks();
   await load({force:true});
 });
-$('refreshBtn').addEventListener('click',startManualRefresh);
-$('settingsRefresh').addEventListener('click',startManualRefresh);
+
 if('serviceWorker' in navigator&&location.protocol==='https:'){
   let reloadingForUpdate=false;
   let allowReloadForStartupUpdate=true;
