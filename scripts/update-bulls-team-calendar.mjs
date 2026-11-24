@@ -13,7 +13,7 @@ const response = await fetch(sourceUrl, {
 });
 if (!response.ok) throw new Error('DVOS HTTP ' + response.status);
 const html = await response.text();
-if (!html || !/TB\s+Gingen\s+Bulls\s+I/i.test(html)) throw new Error('DVOS-Seite enthält nicht die erwartete Mannschaft.');
+if (!html || !html.toLowerCase().includes(config.teamName.toLowerCase())) throw new Error('DVOS-Seite enthält nicht die erwartete Mannschaft: ' + config.teamName + '.');
 
 function decode(value) {
   return String(value ?? '')
