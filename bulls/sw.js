@@ -1,5 +1,5 @@
 // Versioned app shell: the previous cache is retired after the new shell installs successfully.
-const CACHE = 'tb-bulls-main-teams-v2';
+const CACHE = 'tb-bulls-main-teams-v3';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './teams.json'];
 
 self.addEventListener('install', event => {
