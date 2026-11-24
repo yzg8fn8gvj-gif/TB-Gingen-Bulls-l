@@ -343,9 +343,10 @@ function startManualRefresh(){
   const baseline=Date.parse(data?.meta?.updatedAt||'')||0;
   manualRefreshWait={baseline,startedAt:Date.now(),timer:null};
   setStatus('warn','GitHub geöffnet – dort „Run workflow“ starten.');
+  manualRefreshWait.timer=window.setTimeout(pollManualRefresh,15000);
   const opened=window.open(MANUAL_REFRESH_URL,'_blank');
   if(!opened){
-    window.location.href=MANUAL_REFRESH_URL;
+    $('statusText').innerHTML='GitHub konnte nicht automatisch geöffnet werden. <a href="'+MANUAL_REFRESH_URL+'" target="_blank" rel="noopener">GitHub-Workflow öffnen</a> und dort „Run workflow“ tippen.';
     return;
   }
   try{opened.opener=null;}catch{}
