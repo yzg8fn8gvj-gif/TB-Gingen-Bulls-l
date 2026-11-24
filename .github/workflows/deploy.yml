@@ -11,13 +11,15 @@ permissions:
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Never cancel a deployment that is already refreshing or publishing the live app.
+  cancel-in-progress: false
 jobs:
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,8 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Refresh TB Gingen Bulls I data and calendar from DVOS
-        run: node scripts/update-bulls-calendar.mjs
       - name: Refresh all four TB Gingen Bulls teams and calendars from DVOS
         run: node scripts/update-bulls-teams.mjs
       - name: Configure Pages
