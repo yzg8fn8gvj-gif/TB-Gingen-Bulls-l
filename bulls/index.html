@@ -461,14 +461,16 @@ $('refreshBtn').addEventListener('click',()=>load({manual:true}));
 $('settingsRefresh').addEventListener('click',()=>load({manual:true}));
 if('serviceWorker' in navigator&&location.protocol==='https:'){
   let reloadingForUpdate=false;
+  let allowReloadForStartupUpdate=true;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{
-    if(reloadingForUpdate)return;
+    if(!allowReloadForStartupUpdate||reloadingForUpdate)return;
     reloadingForUpdate=true;
     window.location.reload();
   });
   navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'})
     .then(reg=>reg.update())
-    .catch(()=>{});
+    .then(()=>window.setTimeout(()=>{allowReloadForStartupUpdate=false;},10000))
+    .catch(()=>{allowReloadForStartupUpdate=false;});
 }
 initialize();
 })();
