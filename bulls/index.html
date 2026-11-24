@@ -404,7 +404,7 @@ async function load({manual=false,force=false}={}){
 
     const updatedAt=Date.parse(meta.updatedAt||'');
     const ageMinutes=Number.isFinite(updatedAt)?Math.max(0,(Date.now()-updatedAt)/60000):Infinity;
-    setStatus('good','Aktuell veröffentlichter Datenstand geladen');
+    setStatus(ageMinutes<=12?'good':'warn',ageMinutes<=12?'Aktuell veröffentlichter Datenstand geladen':'Datenstand älter als 12 Minuten – automatische Aktualisierung steht aus');
     lastSuccessfulLoadAt=Date.now();
   }catch(err){
     if(!isCurrent())return;
