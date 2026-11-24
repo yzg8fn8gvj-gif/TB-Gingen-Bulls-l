@@ -213,6 +213,11 @@ let teams=[];
 const $=id=>document.getElementById(id);
 let data=null;
 let filters={results:'all',schedule:'team',round:'all'};
+let loadController=null;
+let loadingTeamId=null;
+let loadSequence=0;
+let lastSuccessfulLoadAt=0;
+let analysisLoadedForTeam=null;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function isOur(m){return m.home===TEAM||m.away===TEAM;}
 function hasScore(m){return Number.isFinite(m.homeScore)&&Number.isFinite(m.awayScore);}
@@ -338,31 +343,57 @@ function setCalendarLinks(){
   ['calendarSubscribeBtn','calendarSubscribeHome'].forEach(id=>{const a=$(id);a.href=webcalUrl;a.removeAttribute('aria-disabled');});
   ['calendarDirect','calendarDirectHome'].forEach(id=>{const a=$(id);a.href=httpsUrl;});
 }
-async function load({manual=false}={}){
+async function load({manual=false,force=false}={}){
+  if(!activeTeam)return;
+  const requestedTeamId=activeTeam.id;
+  if(!force&&!manual&&Date.now()-lastSuccessfulLoadAt<45000)return;
+  // Ignore repeated foreground/polling events while this team's request is running.
+  if(loadController&&loadingTeamId===requestedTeamId&&!manual)return;
+
+  if(loadController)loadController.abort();
+  const controller=new AbortController();
+  const requestId=++loadSequence;
+  loadController=controller;
+  loadingTeamId=requestedTeamId;
+  const timeoutId=window.setTimeout(()=>controller.abort(),15000);
+  const isCurrent=()=>requestId===loadSequence&&activeTeam?.id===requestedTeamId;
   const refreshButtons=[$('refreshBtn'),$('settingsRefresh')].filter(Boolean);
+
   if(manual){
-    for(const button of refreshButtons){button.disabled=true;button.dataset.oldLabel=button.textContent;button.textContent='↻ Lade neuesten Stand …';}
+    for(const button of refreshButtons){
+      if(button.dataset.oldLabel===undefined)button.dataset.oldLabel=button.textContent;
+      button.disabled=true;
+      button.textContent='↻ Lade neuesten Stand …';
+    }
     setStatus('warn','Lade letzten DVOS-Stand …');
-  }else{
+  }else if(!data){
     setStatus('warn','Lade veröffentlichte DVOS-Daten …');
   }
+
   try{
-    const requestedTeamId=activeTeam.id;
-    const res=await fetch('./data/'+requestedTeamId+'/data.json?refresh='+Date.now(),{cache:'no-store'});
+    const res=await fetch('./data/'+requestedTeamId+'/data.json?refresh='+Date.now(),{
+      cache:'no-store',
+      signal:controller.signal
+    });
     if(!res.ok)throw new Error('HTTP '+res.status);
     const nextData=await res.json();
-    if(!activeTeam||activeTeam.id!==requestedTeamId)return;
+    if(!isCurrent())return;
+
     data=nextData;
     const meta=data.meta||{};
     $('seasonLabel').textContent=String(meta.season||'2026/2027').replace('/',' / ');
     $('leagueLabel').textContent=meta.leagueName||'DVOS-Liga';
     $('sourceDetails').textContent=(meta.leagueName||'DVOS-Liga')+' · Liga-ID '+(meta.leagueId??'—')+' · Saison '+(meta.season||'—');
     $('sourceLink').href=meta.sourceUrl||'https://dvos.de/liga.php?a_liga=45&p=0';
-    const teamStatsUrl='./data/'+activeTeam.id+'/team-analysis.html';
+    const teamStatsUrl='./data/'+requestedTeamId+'/team-analysis.html';
     $('teamStatsOpen').href=teamStatsUrl;
-    // Re-open the generated DVOS analysis page on every refresh tap,
-    // with a unique URL so the browser cannot reuse an older iframe response.
-    $('teamStatsFrame').src=teamStatsUrl+'?refresh='+Date.now();
+
+    // The analysis iframe is comparatively heavy: reload it only on team change
+    // or when the user explicitly requests a manual refresh.
+    if(manual||analysisLoadedForTeam!==requestedTeamId){
+      $('teamStatsFrame').src=teamStatsUrl+'?refresh='+Date.now();
+      analysisLoadedForTeam=requestedTeamId;
+    }
     $('teamStatsFrame').title='DVOS-Mannschaftsauswertung '+TEAM;
     $('teamStatsHelp').textContent=meta.teamAnalysisVerified
       ? 'Die originale DVOS-Spielerauswertung für '+TEAM+' wird direkt angezeigt.'
@@ -370,10 +401,17 @@ async function load({manual=false}={}){
     $('updatedText').textContent='DVOS-Stand '+fmtUpdated(meta.updatedAt);
     $('dataUpdated').textContent='Letzte Datenaktualisierung: '+fmtUpdated(meta.updatedAt);
     renderTable();renderLists();renderCup();renderLiveTeamMatch();
+
     const updatedAt=Date.parse(meta.updatedAt||'');
     const ageMinutes=Number.isFinite(updatedAt)?Math.max(0,(Date.now()-updatedAt)/60000):Infinity;
     setStatus(ageMinutes<=12?'good':'warn',ageMinutes<=12?'DVOS-Stand aktuell':'Letzter DVOS-Abruf liegt zurück');
+    lastSuccessfulLoadAt=Date.now();
   }catch(err){
+    if(!isCurrent())return;
+    if(controller.signal.aborted){
+      setStatus('warn','Datenabruf dauerte zu lange. Vorhandene Daten bleiben angezeigt.');
+      return;
+    }
     setStatus('bad','DVOS-Daten konnten nicht geladen werden');
     $('tableContent').innerHTML=missing('Daten nicht erreichbar','Prüfe deine Internetverbindung oder lade die App später erneut.');
     $('resultsContent').innerHTML=missing('Ergebnisse nicht erreichbar','Die aktuelle Datendatei konnte nicht geladen werden.');
@@ -383,8 +421,17 @@ async function load({manual=false}={}){
     $('lastMatch').innerHTML=missing('Daten nicht erreichbar','Keine aktuelle Partie verfügbar.');
     $('nextMatch').innerHTML=missing('Daten nicht erreichbar','Keine aktuelle Partie verfügbar.');
   }finally{
-    if(manual){
-      for(const button of refreshButtons){button.disabled=false;button.textContent=button.dataset.oldLabel||'↻ Jetzt aktualisieren';delete button.dataset.oldLabel;}
+    window.clearTimeout(timeoutId);
+    if(requestId===loadSequence){
+      loadController=null;
+      loadingTeamId=null;
+      for(const button of refreshButtons){
+        if(button.dataset.oldLabel!==undefined){
+          button.disabled=false;
+          button.textContent=button.dataset.oldLabel;
+          delete button.dataset.oldLabel;
+        }
+      }
     }
   }
 }
@@ -399,6 +446,8 @@ function route(){
 document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click',()=>setTimeout(route,20)));
 window.addEventListener('hashchange',route);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});
+window.addEventListener('online',()=>load({force:true}));
+window.setInterval(()=>{if(!document.hidden)load();},60000);
 document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
   const view=btn.dataset.view;filters[view]=btn.dataset.filter;
   document.querySelectorAll('[data-view="'+view+'"]').forEach(b=>b.classList.toggle('selected',b===btn));
@@ -437,7 +486,7 @@ async function initialize(){
     activeTeam=teams.find(t=>t.id===savedTeamId)||teams[0];
     $('teamPicker').innerHTML=teams.map(t=>'<option value="'+esc(t.id)+'">'+esc(t.label)+'</option>').join('');
     applyTeamUi();route();setCalendarLinks();
-    await load();
+    await load({force:true});
   }catch(error){
     setStatus('bad','Mannschaftsauswahl konnte nicht geladen werden');
     $('tableContent').innerHTML=missing('Mannschaften nicht verfügbar','Die Mannschaftsauswahl konnte nicht geladen werden. Bitte später erneut öffnen.');
@@ -455,10 +504,10 @@ $('teamPicker').addEventListener('change',async()=>{
   document.querySelectorAll('[data-round]').forEach(b=>b.classList.toggle('selected',b.dataset.round==='all'));
   if(location.hash==='#kasse'&&!activeTeam.hasCash)location.hash='#start';
   applyTeamUi();route();setCalendarLinks();
-  await load();
+  await load({force:true});
 });
-$('refreshBtn').addEventListener('click',()=>load({manual:true}));
-$('settingsRefresh').addEventListener('click',()=>load({manual:true}));
+$('refreshBtn').addEventListener('click',()=>load({manual:true,force:true}));
+$('settingsRefresh').addEventListener('click',()=>load({manual:true,force:true}));
 if('serviceWorker' in navigator&&location.protocol==='https:'){
   let reloadingForUpdate=false;
   let allowReloadForStartupUpdate=true;
