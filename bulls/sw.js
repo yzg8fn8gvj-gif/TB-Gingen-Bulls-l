@@ -23,12 +23,12 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
   // Live team data and calendars must always come directly from the latest deployment.
-  if (/\\/data\\/[^/]+\\/(data\\.json|calendar\\.ics|team-analysis\\.html)$/.test(url.pathname)) return;
+  if (/\/data\/[^/]+\/(data\.json|calendar\.ics|team-analysis\.html)$/.test(url.pathname)) return;
 
   // For app navigation and shell files, prefer the network so a normal close/reopen
   // picks up the latest published app without reinstalling the home-screen app.
   const isShellRequest = request.mode === 'navigate'
-    || /\\/(index\\.html|manifest\\.webmanifest|teams\\.json|icon\\.svg|sw\\.js)$/.test(url.pathname)
+    || /\/(index\.html|manifest\.webmanifest|teams\.json|icon\.svg|sw\.js)$/.test(url.pathname)
     || url.pathname.endsWith('/');
 
   if (!isShellRequest) return;
