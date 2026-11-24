@@ -344,15 +344,69 @@ function setCalendarLinks(){
   ['calendarDirect','calendarDirectHome'].forEach(id=>{const a=$(id);a.href=httpsUrl;});
 }
 let serverRefreshBusy=false;
+let sharedRefreshActive=false;
+let sharedRefreshCheckAt=0;
+let sharedRefreshCheckPromise=null;
 const REFRESH_WORKER_URL='https://patient-sun-81d0.bk8t6ggzhw.workers.dev';
+const WORKFLOW_RUNS_URL='https://api.github.com/repos/yzg8fn8gvj-gif/TB-Gingen-Bulls-l/actions/workflows/deploy.yml/runs?per_page=10';
 const wait=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
+function restoreDisplayedDataStatus(){
+  if(!data)return;
+  const updatedAt=Date.parse(data.meta?.updatedAt||'');
+  const ageMinutes=Number.isFinite(updatedAt)?Math.max(0,(Date.now()-updatedAt)/60000):Infinity;
+  setStatus(ageMinutes<=12?'good':'warn',ageMinutes<=12?'Aktuell veröffentlichter Datenstand geladen':'Datenstand älter als 12 Minuten – automatische Aktualisierung steht aus');
+}
+function paintSharedRefreshState(active){
+  const button=$('refreshBtn');
+  if(active){
+    button.disabled=true;
+    button.dataset.sharedLock='true';
+    button.textContent='↻ Aktualisierung läuft …';
+    setStatus('warn','Auf dem Server läuft gerade eine Aktualisierung für alle vier Mannschaften …');
+  }else if(button.dataset.sharedLock==='true'&&!serverRefreshBusy){
+    delete button.dataset.sharedLock;
+    button.disabled=false;
+    button.textContent='↻ Jetzt aktualisieren';
+    restoreDisplayedDataStatus();
+  }
+}
+async function syncSharedRefreshStatus({force=false}={}){
+  if(document.hidden&&!force)return sharedRefreshActive;
+  if(!force&&Date.now()-sharedRefreshCheckAt<55000)return sharedRefreshActive;
+  if(sharedRefreshCheckPromise)return sharedRefreshCheckPromise;
+  sharedRefreshCheckPromise=(async()=>{
+    sharedRefreshCheckAt=Date.now();
+    try{
+      const response=await fetch(WORKFLOW_RUNS_URL,{
+        cache:'no-store',
+        headers:{'Accept':'application/vnd.github+json'}
+      });
+      if(!response.ok)throw new Error('GitHub-Status HTTP '+response.status);
+      const payload=await response.json();
+      const activeRun=(payload.workflow_runs||[]).find(run=>
+        ['queued','in_progress','requested','waiting','pending'].includes(run.status)&&
+        Date.now()-Date.parse(run.created_at||'')<20*60*1000
+      );
+      sharedRefreshActive=!!activeRun||serverRefreshBusy;
+      paintSharedRefreshState(sharedRefreshActive);
+    }catch(error){
+      console.warn('Gemeinsamer Aktualisierungsstatus konnte nicht gelesen werden:',error);
+      // Die bereits bekannte Sperre bleibt bei einem vorübergehenden API-Fehler erhalten.
+    }
+    return sharedRefreshActive;
+  })().finally(()=>{sharedRefreshCheckPromise=null;});
+  return sharedRefreshCheckPromise;
+}
 async function requestServerRefresh(){
   const button=$('refreshBtn');
   if(serverRefreshBusy||!activeTeam)return;
+  const alreadyRunning=await syncSharedRefreshStatus({force:true});
+  if(alreadyRunning){
+    paintSharedRefreshState(true);
+    return;
+  }
   serverRefreshBusy=true;
-  const oldLabel=button.textContent;
-  button.disabled=true;
-  button.textContent='↻ Aktualisierung läuft …';
+  paintSharedRefreshState(true);
   try{
     const teamId=activeTeam.id;
     const dataUrl='./data/'+teamId+'/data.json?check='+Date.now();
@@ -369,6 +423,8 @@ async function requestServerRefresh(){
     const result=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error(result.error||'Der Aktualisierungsauftrag konnte nicht gestartet werden (HTTP '+response.status+').');
     setStatus('warn','DVOS-Daten werden für alle vier Mannschaften aktualisiert …');
+    // Update the shared indicator as soon as GitHub reports the queued/running workflow.
+    await syncSharedRefreshStatus({force:true});
     const deadline=Date.now()+240000;
     while(Date.now()<deadline){
       await wait(10000);
@@ -388,8 +444,7 @@ async function requestServerRefresh(){
     setStatus('bad',error.message||'Aktualisierung fehlgeschlagen.');
   }finally{
     serverRefreshBusy=false;
-    button.disabled=false;
-    button.textContent=oldLabel;
+    await syncSharedRefreshStatus({force:true});
   }
 }
 $('refreshBtn').addEventListener('click',requestServerRefresh);
@@ -478,8 +533,13 @@ async function load({manual=false,force=false}={}){
       loadingTeamId=null;
       for(const button of refreshButtons){
         if(button.dataset.oldLabel!==undefined){
-          button.disabled=false;
-          button.textContent=button.dataset.oldLabel;
+          if(button.id==='refreshBtn'&&sharedRefreshActive){
+            button.disabled=true;
+            button.textContent='↻ Aktualisierung läuft …';
+          }else{
+            button.disabled=false;
+            button.textContent=button.dataset.oldLabel;
+          }
           delete button.dataset.oldLabel;
         }
       }
@@ -496,9 +556,9 @@ function route(){
 }
 document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click',()=>setTimeout(route,20)));
 window.addEventListener('hashchange',route);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)load({force:true});});
-window.addEventListener('online',()=>load({force:true}));
-window.setInterval(()=>{if(!document.hidden)load({force:true});},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){load({force:true});syncSharedRefreshStatus({force:true});}});
+window.addEventListener('online',()=>{load({force:true});syncSharedRefreshStatus({force:true});});
+window.setInterval(()=>{if(!document.hidden){load({force:true});syncSharedRefreshStatus();}},60000);
 document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
   const view=btn.dataset.view;filters[view]=btn.dataset.filter;
   document.querySelectorAll('[data-view="'+view+'"]').forEach(b=>b.classList.toggle('selected',b===btn));
@@ -538,6 +598,7 @@ async function initialize(){
     $('teamPicker').innerHTML=teams.map(t=>'<option value="'+esc(t.id)+'">'+esc(t.label)+'</option>').join('');
     applyTeamUi();route();setCalendarLinks();
     await load({force:true});
+    await syncSharedRefreshStatus({force:true});
   }catch(error){
     setStatus('bad','Mannschaftsauswahl konnte nicht geladen werden');
     $('tableContent').innerHTML=missing('Mannschaften nicht verfügbar','Die Mannschaftsauswahl konnte nicht geladen werden. Bitte später erneut öffnen.');
