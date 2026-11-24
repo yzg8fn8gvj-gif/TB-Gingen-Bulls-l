@@ -3,9 +3,9 @@ on:
   push:
     branches: [main]
   schedule:
-    # Keep the five-minute cadence, but start at minute 7 to avoid GitHub's
-    # busiest top-of-hour scheduling window.
-    - cron: "7-59/5 * * * *"
+    # Run continuously every five minutes, offset from the top of the hour.
+    # Touching this schedule also re-registers it with GitHub Actions.
+    - cron: "3-58/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: read
