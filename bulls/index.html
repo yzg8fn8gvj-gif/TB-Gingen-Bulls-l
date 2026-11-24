@@ -13,7 +13,7 @@
 <style>
 :root{--navy:#101b32;--navy2:#1c3152;--red:#c93649;--ink:#172033;--muted:#687489;--line:#e6eaf0;--paper:#f3f5f8;--card:#fff;--green:#17865b;--amber:#a9630b;--shadow:0 8px 24px rgba(21,34,57,.075)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom))}a{color:inherit}.app{max-width:760px;margin:0 auto;min-height:100vh}.hero{background:linear-gradient(140deg,#101b32 0%,#1a3154 68%,#273d5f 100%);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 18px 23px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-55px;top:-78px;width:250px;height:250px;border:30px solid rgba(255,255,255,.045);border-radius:50%}.brandrow{display:flex;align-items:center;gap:12px;position:relative;z-index:1}.crest{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#e34a58,#a92636);display:grid;place-items:center;font-weight:950;letter-spacing:-1px;font-size:17px;box-shadow:0 7px 18px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.25)}.brand{font-size:19px;font-weight:850;letter-spacing:-.35px}.subbrand{font-size:12px;color:#c4d0e2;margin-top:1px}.season{margin-left:auto;align-self:flex-start;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);border-radius:999px;padding:5px 9px;font-size:11px;color:#edf2f9;white-space:nowrap}.hero h1{font-size:27px;letter-spacing:-.75px;line-height:1.1;margin:23px 0 7px;position:relative;z-index:1}.hero p{font-size:13px;color:#ced8e8;margin:0;position:relative;z-index:1}.heroInfo{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px;position:relative;z-index:1}.heroInfo span{font-size:11px;color:#e1e8f3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:999px}
-.statusline{display:flex;align-items:center;gap:8px;padding:11px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}.dot{width:8px;height:8px;border-radius:50%;background:#9aa4b4;flex:none}.dot.good{background:#1b9b69}.dot.warn{background:#df9a31}.dot.bad{background:#d94c58}.statusline .updated{margin-left:auto;font-variant-numeric:tabular-nums}
+.statusline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:11px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}.statusline .btn{flex:none}.statusline .updated{margin-left:auto}.dot{width:8px;height:8px;border-radius:50%;background:#9aa4b4;flex:none}.dot.good{background:#1b9b69}.dot.warn{background:#df9a31}.dot.bad{background:#d94c58}.statusline .updated{margin-left:auto;font-variant-numeric:tabular-nums}
 main{padding:16px}.screen{display:none;animation:fade .18s ease}.screen.active{display:block}@keyframes fade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:4px 0 13px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.15px;color:var(--red);font-weight:850}.sectionhead h2{margin:3px 0 0;font-size:21px;letter-spacing:-.5px}.muted{color:var(--muted)}.tiny{font-size:11px}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);padding:15px;margin-bottom:12px}.cardtitle{font-size:13px;font-weight:850;margin:0 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:0 4px 14px rgba(21,34,57,.035)}.metric .label{font-size:11px;color:var(--muted)}.metric .value{font-size:25px;font-weight:900;letter-spacing:-.8px;margin-top:4px}.metric .note{font-size:11px;color:var(--muted);margin-top:2px}.matchhero{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}.club{font-size:13px;font-weight:850;line-height:1.2}.club small{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:4px}.versus{font-size:12px;color:#aab2c0;font-weight:850}.score{font-size:25px;font-weight:950;letter-spacing:-.8px;white-space:nowrap}.matchmeta{text-align:center;margin-top:10px;color:var(--muted);font-size:11px}.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;background:#edf1f7;color:#536075}.pill.done{background:#e9f6ef;color:#197b51}.pill.upcoming{background:#eef3fc;color:#315e9a}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:10px 12px;font-weight:750;font-size:12px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;min-height:39px}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.btn.red{background:var(--red);color:#fff;border-color:var(--red)}.btn:active{transform:scale(.985)}.btn.small{min-height:31px;padding:6px 9px;font-size:11px}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.list{display:flex;flex-direction:column}.item{padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0;padding-bottom:0}.itemtop{display:flex;justify-content:space-between;align-items:center;gap:8px}.itemteams{font-size:13px;font-weight:800;line-height:1.35}.itemresult{font-size:18px;font-weight:950;white-space:nowrap}.itemmeta{font-size:11px;color:var(--muted);margin-top:5px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:13px;background:#fff}.table{border-collapse:collapse;width:100%;min-width:530px;font-size:12px}.table th{background:#f5f7fa;color:#677186;text-align:right;padding:10px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.45px;white-space:nowrap}.table th:nth-child(2),.table td:nth-child(2){text-align:left}.table td{padding:10px 8px;border-top:1px solid #edf0f4;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.table tr.ourteam td{background:#fff1f2;font-weight:850}.rank{width:28px;color:#7c8798}.clubname{font-weight:750;white-space:normal;min-width:155px}.empty{padding:20px 14px;text-align:center;border:1px dashed #ccd3de;border-radius:14px;background:#fff;color:var(--muted)}.empty strong{display:block;color:#344057;margin-bottom:5px}.empty p{font-size:12px;margin:3px 0}.filterbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.filter{border:1px solid var(--line);border-radius:999px;background:#fff;padding:7px 11px;font-size:11px;color:#5c6679;font-weight:800}.filter.selected{background:var(--navy);color:#fff;border-color:var(--navy)}.notice{border-left:3px solid #d9a047;background:#fff8ec;padding:11px 12px;border-radius:0 10px 10px 0;font-size:12px;color:#73511f}.notice strong{display:block;margin-bottom:3px}.bottomnav{position:fixed;z-index:20;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}.navinner{width:100%;max-width:760px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}.navlink{min-width:0;text-decoration:none;color:#748096;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px;border-radius:10px;font-size:9px;font-weight:800}.navlink .ico{font-size:19px;line-height:1.2}.navlink.active{color:var(--red);background:#fff2f3}.footer{text-align:center;color:#8b94a4;font-size:10px;margin:20px 0 6px}.rawbox{max-height:220px;overflow:auto;white-space:pre-wrap;word-break:break-word;background:#f6f7f9;border-radius:10px;padding:10px;font-size:10px;color:#475166}.hidden{display:none!important}
 @media(min-width:600px){.hero{border-radius:0 0 24px 24px;padding-left:28px;padding-right:28px}.statusline{padding-left:28px;padding-right:28px}main{padding:22px 28px}.hero h1{font-size:30px}.navlink{font-size:10px}}
 
@@ -99,7 +99,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
   <p>Tabelle, Ergebnisse und Spielplan – direkt aus der DVOS-Liga.</p>
   <div class="heroInfo"><span id="leagueLabel">Bezirksoberliga A</span><span>DVOS · 2026/2027</span><span>🎯 STEEL-DART</span></div>
 </header>
-<div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Daten werden geladen …</span><span class="updated" id="updatedText">—</span></div>
+<div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Daten werden geladen …</span><button class="btn small primary" id="refreshBtn" type="button">↻ Jetzt aktualisieren</button><span class="updated" id="updatedText">—</span></div>
 <main>
   <section class="screen active" id="start">
     <div class="sectionhead"><div><div class="eyebrow">Dein Überblick</div><h2 id="homeHeading">Bulls I auf einen Blick</h2></div></div>
@@ -186,7 +186,7 @@ body{padding-bottom:calc(156px + env(safe-area-inset-bottom))}
   <section class="screen" id="info">
     <div class="sectionhead"><div><div class="eyebrow">Verbindung & Quelle</div><h2>App-Informationen</h2></div></div>
     <div class="card"><div class="cardtitle">Offizielle DVOS-Liga</div><div class="tiny muted" id="sourceDetails">Bezirksoberliga A · Liga-ID 45 · Saison 2026/2027</div><div class="actions"><a class="btn primary" id="sourceLink" target="_blank" rel="noopener" href="https://dvos.de/liga.php?a_liga=45&p=0">DVOS-Ligaseite öffnen ↗</a></div></div>
-    <div class="card"><div class="cardtitle">Automatische Aktualisierung</div><p class="tiny muted">Der Server ruft die Daten aller vier Mannschaften automatisch etwa alle fünf Minuten bei DVOS ab. Die App prüft regelmäßig auf neue veröffentlichte Daten und übernimmt sie selbstständig. Du musst nichts drücken.</p><div class="tiny muted" id="dataUpdated">Letzter veröffentlichter Datenstand: —</div></div>
+    <div class="card"><div class="cardtitle">Aktualisierung</div><p class="tiny muted">Der Server aktualisiert alle vier Mannschaften automatisch. Zusätzlich kannst du jederzeit oben auf „Jetzt aktualisieren“ tippen. Die neuen Daten werden anschließend auf allen Geräten angezeigt.</p><div class="tiny muted" id="dataUpdated">Letzter veröffentlichter Datenstand: —</div></div>
     <div class="card"><div class="cardtitle">Neue Saison</div><p class="tiny muted">Die Liga-Kennung steht zentral in der Datei <b>bulls/config.json</b>. Für eine neue Saison werden dort Liga-ID, Ligabezeichnung und Saison angepasst. Die App-Adresse und der Kalender-Abo-Link bleiben bestehen.</p></div>
     <div class="notice"><strong>Hinweis</strong>Dies ist eine private Begleit-App und keine offizielle App des DVOS oder des TB Gingen 1870 e.V.</div>
   </section>
@@ -343,6 +343,57 @@ function setCalendarLinks(){
   ['calendarSubscribeBtn','calendarSubscribeHome'].forEach(id=>{const a=$(id);a.href=webcalUrl;a.removeAttribute('aria-disabled');});
   ['calendarDirect','calendarDirectHome'].forEach(id=>{const a=$(id);a.href=httpsUrl;});
 }
+let serverRefreshBusy=false;
+const REFRESH_WORKER_URL='https://patient-sun-81d0.bk8t6ggzhw.workers.dev';
+const wait=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
+async function requestServerRefresh(){
+  const button=$('refreshBtn');
+  if(serverRefreshBusy||!activeTeam)return;
+  serverRefreshBusy=true;
+  const oldLabel=button.textContent;
+  button.disabled=true;
+  button.textContent='↻ Aktualisierung läuft …';
+  try{
+    const teamId=activeTeam.id;
+    const dataUrl='./data/'+teamId+'/data.json?check='+Date.now();
+    const beforeResponse=await fetch(dataUrl,{cache:'no-store'});
+    if(!beforeResponse.ok)throw new Error('Aktueller Datenstand konnte nicht gelesen werden.');
+    const beforeData=await beforeResponse.json();
+    const beforeUpdated=beforeData.meta?.updatedAt||'';
+    setStatus('warn','Starte Aktualisierung aller vier Mannschaften …');
+    const response=await fetch(REFRESH_WORKER_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:'{}'
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(result.error||'Der Aktualisierungsauftrag konnte nicht gestartet werden (HTTP '+response.status+').');
+    setStatus('warn','DVOS-Daten werden für alle vier Mannschaften aktualisiert …');
+    const deadline=Date.now()+240000;
+    while(Date.now()<deadline){
+      await wait(10000);
+      if(activeTeam?.id!==teamId)break;
+      const check=await fetch('./data/'+teamId+'/data.json?check='+Date.now(),{cache:'no-store'});
+      if(!check.ok)continue;
+      const latest=await check.json();
+      const latestUpdated=latest.meta?.updatedAt||'';
+      if(latestUpdated&&latestUpdated!==beforeUpdated){
+        await load({force:true});
+        setStatus('good','Alle vier Mannschaften wurden aktualisiert. Neuer Datenstand geladen.');
+        return;
+      }
+    }
+    setStatus('warn','Der Auftrag wurde gestartet. Die Veröffentlichung dauert länger – die App übernimmt neue Daten automatisch.');
+  }catch(error){
+    setStatus('bad',error.message||'Aktualisierung fehlgeschlagen.');
+  }finally{
+    serverRefreshBusy=false;
+    button.disabled=false;
+    button.textContent=oldLabel;
+  }
+}
+$('refreshBtn').addEventListener('click',requestServerRefresh);
+
 async function load({manual=false,force=false}={}){
   if(!activeTeam)return;
   const requestedTeamId=activeTeam.id;
